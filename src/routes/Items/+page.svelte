@@ -14,7 +14,9 @@ let ItemList=[
     {name:"WoodHalfWall",grade:"wood",type:"HalfWall",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-half.webp"},
     {name:"WoodLowWall",grade:"wood",type:"LowWall",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-low.webp"},
     {name:"WoodDoorway",grade:"Wood",type:"Frame",buildcost:140,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-doorway.webp"},
-    {name:"WoodWallFrame",grade:"Wood",type:"Frame",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-frame.webp"}
+    {name:"WoodWallFrame",grade:"Wood",type:"Frame",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-frame.webp"},
+    {name:"WoodFloorFrame",grade:"Wood",type:"Frame",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-frame.webp"},
+    {name:"WoodTriangleFloorFrame",grade:"Wood",type:"Frame",buildcost:50,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-triangle-frame.webp"},
 
 
 
@@ -33,7 +35,7 @@ let ItemList=[
 
 ],
 /* Clothes */
-[
+[   
 
 
 ],
