@@ -1,12 +1,11 @@
 
 ---
-title: "Hello World"
-date: "2025-04-01"
+title: "Copilot is actually usefull"
+date: "2025-04-09"
 ---
 
 # Hello 👋
 
 Welcome to my first devblog post!
-Each post is written in MDX format, which allows you to use Svelte components inside your posts - such as this CodeBlock. 
+Today i added all the buildables i wanted to have at the moment, copilot was for once usefull for something. I also began work on a info popupwindow when you click on the items
 <br>
-Each post needs to have a title and a date in the frontmatter, between the --- tags.

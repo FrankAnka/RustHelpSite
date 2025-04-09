@@ -101,12 +101,20 @@ let ItemList=[
 
 ]
 ]
+
+
+function InfoPopup(Item){
+
+}
+
+
+
 </script>
 
 
 <section class="ScrollableGrid">
         {#each ItemList[0] as Item}
-            <button class="Item">
+            <button class="Item" on:click={()=>InfoPopup(Item)}>
                 <div style="width: 90%; height:80%;" >
                 <img src={Item.img} alt=Item.name>
                 </div>
@@ -114,6 +122,10 @@ let ItemList=[
             </button>
         {/each}
 </section>
+<div class="InfoPopup">
+
+
+</div>
 
 
 
@@ -148,5 +160,17 @@ let ItemList=[
     padding: 1%;
 
 
+}
+.InfoPopup{
+    display: visible;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 85%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
 }
 </style>
