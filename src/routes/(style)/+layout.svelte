@@ -1,5 +1,5 @@
 <script>
-	import '../app.postcss';
+	import '../../app.postcss';
 	import {base} from '$app/paths';
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
@@ -27,6 +27,7 @@
 	<a href="{base}/Items">Items</a>
 	<a href="{base}/Building">Building</a>
 	<a href="{base}/Guides">Guides</a>
+	<a href="{base}/devblog">Devblog</a>
 
 </nav>
 <input class="search" type="text" placeholder="Search">
