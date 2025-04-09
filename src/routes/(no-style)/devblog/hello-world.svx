@@ -1,11 +1,22 @@
 
 ---
-title: "Copilot is actually usefull"
+title: Version 0.0.1
 date: "2025-04-09"
 ---
 
 # Hello 👋
 
 Welcome to my first devblog post!
-Today i added all the buildables i wanted to have at the moment, copilot was for once usefull for something. I also began work on a info popupwindow when you click on the items
+Today i added all the buildables i wanted to have at the moment, copilot was for once usefull for something. I also began work on a info popupwindow when you click on the items.
+
+## Changes
+The following changes and implementations have been made in that version of the project:
+* Added the rest of the buildings to the Buildinglist
+*Styling
+*Setting up devblog
+
+## Features
+    No Features were added this version
+
+<hr>
 <br>
