@@ -30,7 +30,7 @@
 	<a href="{base}/devblog">Devblog</a>
 
 </nav>
-<input class="search" type="text" placeholder="Search">
+
 <main>
 	
 </main>
@@ -62,19 +62,7 @@ main{
 	border-bottom-right-radius: 10px;
 	
 }
-.search{
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 25%;
-	padding: 10px;
-	border: none;
-	background-color: #1f1c2b;
-	color : rgb(135, 58, 0);
-	border-bottom: #717171 2px solid;
-	border-left: #717171 2px solid;
-	border-bottom-left-radius: 10px;
-}
+
 
 </style>
 

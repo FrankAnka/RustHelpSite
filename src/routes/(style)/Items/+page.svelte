@@ -2,7 +2,18 @@
 	import { text } from "@sveltejs/kit";
 
 let CurrentCategory=0
+let searchString=""
+let searchResults = []
+let hp
+let decay
+let buildcost
+let type
+let grade
+let itemname
+let img
+let popupDisplay="none"
 let ItemList=[
+
 /* Buildings(decay is in hours) */
 [
 /* Wood */
@@ -103,16 +114,48 @@ let ItemList=[
 ]
 
 
+function searchItem(searchString){
+    let searchResults = ItemList[CurrentCategory].filter(item => item.name.toLowerCase().includes(searchString.toLowerCase()));
+    return searchResults;
+}
+
+/* Also handle recent searches */
 function InfoPopup(Item){
+    popupDisplay="flex"
+let i=0
+if(i<=2){
+    i++
+    localStorage.setItem("Recent"+i,JSON.stringify(Item))
+}
+if(i=3){
+    i=1
+    localStorage.setItem("Recent"+i,JSON.stringify(Item))
+}
+
+hp=Item.hp
+decay=Item.decay
+buildcost=Item.buildcost
+grade=Item.grade
+itemname=Item.name
+img=Item.img
 
 }
 
 
-
 </script>
 
-
+<input type="text" placeholder="Search" class="search" bind:value={searchString}/>
 <section class="ScrollableGrid">
+    {#if searchString.length >0}
+        {#each searchItem(searchString) as Item}
+            <button class="Item" on:click={()=>InfoPopup(Item)}>
+                <div style="width: 90%; height:80%;" >
+                <img src={Item.img} alt=Item.name>
+                </div>
+                <h2 style="width: 60%; text-align:center; margin-left:15%;">{Item.name}</h2>
+            </button>
+        {/each}
+    {:else}
         {#each ItemList[0] as Item}
             <button class="Item" on:click={()=>InfoPopup(Item)}>
                 <div style="width: 90%; height:80%;" >
@@ -121,8 +164,14 @@ function InfoPopup(Item){
                 <h2 style="width: 60%; text-align:center; margin-left:15%;">{Item.name}</h2>
             </button>
         {/each}
+    {/if}
 </section>
-<div class="InfoPopup">
+<div style="display: {popupDisplay};" class="InfoPopup">
+<h1 style="font-size: 40px; position:absolute; top:8%; left:5%;">{itemname}</h1>
+<img src={img} alt={itemname}>
+<h2>Health:{hp}</h2>
+<h2>DecayRate:{decay}</h2>
+<h2>Buildcost:{buildcost}</h2>
 
 
 </div>
@@ -138,7 +187,7 @@ function InfoPopup(Item){
     overflow-x: hidden;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 8%;
-    grid-template-rows: repeat(20 , 1fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
     border: 3px solid #717171;
     border-radius: 10px;
     width: 70%;
@@ -147,6 +196,16 @@ function InfoPopup(Item){
     left: 15%;
     padding: 2%;
 
+}
+.search{
+    position: absolute;
+    top : 10%;
+    left: 15%;
+    border: none;
+	background-color: #1f1c2b;
+	color : rgb(135, 58, 0);
+	border: #717171 2px solid;
+	border-radius: 10px;
 }
 .Item  {
     display: flex;
@@ -162,15 +221,16 @@ function InfoPopup(Item){
 
 }
 .InfoPopup{
-    display: visible;
     position: fixed;
-    top: 10%;
+    top: 6%;
     left: 10%;
     width: 80%;
-    height: 85%;
-    background-color: rgba(0,0,0,0.5);
+    height: 90%;
+    background-color: #1f1c2b;
     z-index: 10;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    border: #717171 solid 2px;
 }
 </style>

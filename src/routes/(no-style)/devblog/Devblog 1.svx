@@ -16,7 +16,9 @@ The following changes and implementations have been made in that version of the 
 *Setting up devblog
 
 ## Features
-    No Features were added this version
+    ✅List Of buildings and information
+    ✅Generall Styling for most objects
+    ✅Navigation and general Menu setup
 
 <hr>
 <br>
