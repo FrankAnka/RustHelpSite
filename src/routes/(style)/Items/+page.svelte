@@ -1,5 +1,4 @@
 <script>
-	import { text } from "@sveltejs/kit";
 
 let CurrentCategory=0
 let searchString=""
@@ -17,75 +16,75 @@ let ItemList=[
 /* Buildings(decay is in hours) */
 [
 /* Wood */
-    {name:"Wood Wall",grade:"Wood",type:"Wall",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall.webp"},
-    {name:"Wood Foundation",grade:"Wood",type:"Foundation",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-foundation.webp"},
-    {name:"Wood Triangle Foundation",grade:"Wood",type:"TriangleFoundation",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-foundation-triangle.webp"},
-    {name:"Wood Floor",grade:"Wood",type:"Floor",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor.webp"},
-    {name:"Wood FloorTriangle",grade:"Wood",type:"Floor",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-triangle.webp"},
-    {name:"Wood Window",grade:"wood",type:"WindowFrame",buildcost:140,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-window.webp"},
-    {name:"Wood HalfWall",grade:"wood",type:"HalfWall",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-half.webp"},
-    {name:"Wood LowWall",grade:"wood",type:"LowWall",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-low.webp"},
-    {name:"Wood Doorway",grade:"Wood",type:"Frame",buildcost:140,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-doorway.webp"},
-    {name:"Wood WallFrame",grade:"Wood",type:"Frame",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-frame.webp"},
-    {name:"Wood FloorFrame",grade:"Wood",type:"Frame",buildcost:100,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-frame.webp"},
-    {name:"Wood Triangle FloorFrame",grade:"Wood",type:"Frame",buildcost:50,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-triangle-frame.webp"},
-    {name:"Wood Roof",grade:"Wood",type:"Roof",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-roof.webp"},
-    {name:"Wood RoofTriangle",grade:"Wood",type:"Roof",buildcost:200,hp:250,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-roof-triangle.webp"},
+    {name:"Wood Wall",grade:"Wood",type:"Wall",buildcost:200,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall.webp"},
+    {name:"Wood Foundation",grade:"Wood",type:"Foundation",buildcost:200,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-foundation.webp"},
+    {name:"Wood Triangle Foundation",grade:"Wood",type:"TriangleFoundation",buildcost:100,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-foundation-triangle.webp"},
+    {name:"Wood Floor",grade:"Wood",type:"Floor",buildcost:200,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor.webp"},
+    {name:"Wood FloorTriangle",grade:"Wood",type:"Floor",buildcost:200,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-triangle.webp"},
+    {name:"Wood Window",grade:"wood",type:"WindowFrame",buildcost:140,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-window.webp"},
+    {name:"Wood HalfWall",grade:"wood",type:"HalfWall",buildcost:200,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-half.webp"},
+    {name:"Wood LowWall",grade:"wood",type:"LowWall",buildcost:100,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-low.webp"},
+    {name:"Wood Doorway",grade:"Wood",type:"Frame",buildcost:140,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-doorway.webp"},
+    {name:"Wood WallFrame",grade:"Wood",type:"Frame",buildcost:100,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-wall-frame.webp"},
+    {name:"Wood FloorFrame",grade:"Wood",type:"Frame",buildcost:100,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-frame.webp"},
+    {name:"Wood Triangle FloorFrame",grade:"Wood",type:"Frame",buildcost:50,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-floor-triangle-frame.webp"},
+    {name:"Wood Roof",grade:"Wood",type:"Roof",buildcost:200,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-roof.webp"},
+    {name:"Wood RoofTriangle",grade:"Wood",type:"Roof",buildcost:200,hp:250,res:0.9,decay:3,img:"https://cdn.rusthelp.com/images/256/wood-roof-triangle.webp"},
 /* Stone */  
-    {name:"Stone Wall",grade:"Stone",type:"Wall",buildcost:300,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall.webp"},
-    {name:"Stone Foundation",grade:"Stone",type:"Foundation",buildcost:300,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-foundation.webp"},
-    {name:"Stone Triangle Foundation",grade:"Stone",type:"TriangleFoundation",buildcost:150,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-foundation-triangle.webp"},
-    {name:"Stone Floor",grade:"Stone",type:"Floor",buildcost:150,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor.webp"},
-    {name:"Stone FloorTriangle",grade:"Stone",type:"Floor",buildcost:75,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor-triangle.webp"},
-    {name:"Stone Window",grade:"Stone",type:"WindowFrame",buildcost:210,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-window.webp"},
-    {name:"Stone HalfWall",grade:"Stone",type:"HalfWall",buildcost:300,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-half.webp"},
-    {name:"Stone LowWall",grade:"Stone",type:"LowWall",buildcost:150,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-low.webp"},
-    {name:"Stone Doorway",grade:"Stone",type:"Frame",buildcost:210,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-doorway.webp"},
-    {name:"Stone WallFrame",grade:"Stone",type:"Frame",buildcost:150,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-frame.webp"},
-    {name:"Stone FloorFrame",grade:"Stone",type:"Frame",buildcost:150,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor-frame.webp"},
-    {name:"Stone Triangle FloorFrame",grade:"Stone",type:"Frame",buildcost:75,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor-triangle-frame.webp"},
-    {name:"Stone Roof",grade:"Stone",type:"Roof",buildcost:150,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-roof.webp"},
-    {name:"Stone RoofTriangle",grade:"Stone",type:"Roof",buildcost:150,hp:500,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-roof-triangle.webp"},
+    {name:"Stone Wall",grade:"Stone",type:"Wall",buildcost:300,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall.webp"},
+    {name:"Stone Foundation",grade:"Stone",type:"Foundation",buildcost:300,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-foundation.webp"},
+    {name:"Stone Triangle Foundation",grade:"Stone",type:"TriangleFoundation",buildcost:150,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-foundation-triangle.webp"},
+    {name:"Stone Floor",grade:"Stone",type:"Floor",buildcost:150,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor.webp"},
+    {name:"Stone FloorTriangle",grade:"Stone",type:"Floor",buildcost:75,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor-triangle.webp"},
+    {name:"Stone Window",grade:"Stone",type:"WindowFrame",buildcost:210,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-window.webp"},
+    {name:"Stone HalfWall",grade:"Stone",type:"HalfWall",buildcost:300,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-half.webp"},
+    {name:"Stone LowWall",grade:"Stone",type:"LowWall",buildcost:150,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-low.webp"},
+    {name:"Stone Doorway",grade:"Stone",type:"Frame",buildcost:210,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-doorway.webp"},
+    {name:"Stone WallFrame",grade:"Stone",type:"Frame",buildcost:150,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-wall-frame.webp"},
+    {name:"Stone FloorFrame",grade:"Stone",type:"Frame",buildcost:150,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor-frame.webp"},
+    {name:"Stone Triangle FloorFrame",grade:"Stone",type:"Frame",buildcost:75,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-floor-triangle-frame.webp"},
+    {name:"Stone Roof",grade:"Stone",type:"Roof",buildcost:150,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-roof.webp"},
+    {name:"Stone RoofTriangle",grade:"Stone",type:"Roof",buildcost:150,hp:500,res:0.5,decay:5,img:"https://cdn.rusthelp.com/images/256/stone-roof-triangle.webp"},
 /* Metal */
-    {name:"Metal Wall",grade:"Metal",type:"Wall",buildcost:200,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall.webp"},
-    {name:"Metal Foundation",grade:"Metal",type:"Foundation",buildcost:200,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-foundation.webp"},
-    {name:"Metal Triangle Foundation",grade:"Metal",type:"TriangleFoundation",buildcost:100,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-foundation-triangle.webp"},
-    {name:"Metal Floor",grade:"Metal",type:"Floor",buildcost:100,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor.webp"},
-    {name:"Metal FloorTriangle",grade:"Metal",type:"Floor",buildcost:50,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor-triangle.webp"},
-    {name:"Metal Window",grade:"Metal",type:"WindowFrame",buildcost:140,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-window.webp"},
-    {name:"Metal HalfWall",grade:"Metal",type:"HalfWall",buildcost:200,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-half.webp"},
-    {name:"Metal LowWall",grade:"Metal",type:"LowWall",buildcost:100,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-low.webp"},
-    {name:"Metal Doorway",grade:"Metal",type:"Frame",buildcost:140,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-doorway.webp"},
-    {name:"Metal WallFrame",grade:"Metal",type:"Frame",buildcost:100,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-frame.webp"},
-    {name:"Metal FloorFrame",grade:"Metal",type:"Frame",buildcost:100,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor-frame.webp"},
-    {name:"Metal Triangle FloorFrame",grade:"Metal",type:"Frame",buildcost:50,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor-triangle-frame.webp"},
-    {name:"Metal Roof",grade:"Metal",type:"Roof",buildcost:100,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-roof.webp"},
-    {name:"Metal RoofTriangle",grade:"Metal",type:"Roof",buildcost:100,hp:1000,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-roof-triangle.webp"},
+    {name:"Metal Wall",grade:"Metal",type:"Wall",buildcost:200,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall.webp"},
+    {name:"Metal Foundation",grade:"Metal",type:"Foundation",buildcost:200,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-foundation.webp"},
+    {name:"Metal Triangle Foundation",grade:"Metal",type:"TriangleFoundation",buildcost:100,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-foundation-triangle.webp"},
+    {name:"Metal Floor",grade:"Metal",type:"Floor",buildcost:100,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor.webp"},
+    {name:"Metal FloorTriangle",grade:"Metal",type:"Floor",buildcost:50,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor-triangle.webp"},
+    {name:"Metal Window",grade:"Metal",type:"WindowFrame",buildcost:140,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-window.webp"},
+    {name:"Metal HalfWall",grade:"Metal",type:"HalfWall",buildcost:200,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-half.webp"},
+    {name:"Metal LowWall",grade:"Metal",type:"LowWall",buildcost:100,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-low.webp"},
+    {name:"Metal Doorway",grade:"Metal",type:"Frame",buildcost:140,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-doorway.webp"},
+    {name:"Metal WallFrame",grade:"Metal",type:"Frame",buildcost:100,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-wall-frame.webp"},
+    {name:"Metal FloorFrame",grade:"Metal",type:"Frame",buildcost:100,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor-frame.webp"},
+    {name:"Metal Triangle FloorFrame",grade:"Metal",type:"Frame",buildcost:50,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-floor-triangle-frame.webp"},
+    {name:"Metal Roof",grade:"Metal",type:"Roof",buildcost:100,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-roof.webp"},
+    {name:"Metal RoofTriangle",grade:"Metal",type:"Roof",buildcost:100,hp:1000,res:0.5,decay:8,img:"https://cdn.rusthelp.com/images/256/metal-roof-triangle.webp"},
 /* Armored */
-    {name:"Armored Wall",grade:"Armored",type:"Wall",buildcost:25,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall.webp"},
-    {name:"Armored Foundation",grade:"Armored",type:"Foundation",buildcost:25,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-foundation.webp"},
-    {name:"Armored Triangle Foundation",grade:"Armored",type:"TriangleFoundation",buildcost:13,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-foundation-triangle.webp"},
-    {name:"Armored Floor",grade:"Armored",type:"Floor",buildcost:13,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor.webp"},
-    {name:"Armored FloorTriangle",grade:"Armored",type:"Floor",buildcost:7,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor-triangle.webp"},
-    {name:"Armored Window",grade:"Armored",type:"WindowFrame",buildcost:18,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-window.webp"},
-    {name:"Armored HalfWall",grade:"Armored",type:"HalfWall",buildcost:25,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-half.webp"},
-    {name:"Armored LowWall",grade:"Armored",type:"LowWall",buildcost:13,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-low.webp"},
-    {name:"Armored Doorway",grade:"Armored",type:"Frame",buildcost:18,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-doorway.webp"},
-    {name:"Armored WallFrame",grade:"Armored",type:"Frame",buildcost:13,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-frame.webp"},
-    {name:"Armored FloorFrame",grade:"Armored",type:"Frame",buildcost:13,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor-frame.webp"},
-    {name:"Armored Triangle FloorFrame",grade:"Armored",type:"Frame",buildcost:7,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor-triangle-frame.webp"},
-    {name:"Armored Roof",grade:"Armored",type:"Roof",buildcost:13,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-roof.webp"},
-    {name:"Armored RoofTriangle",grade:"Armored",type:"Roof",buildcost:13,hp:2000,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-roof-triangle.webp"},
+    {name:"Armored Wall",grade:"Armored",type:"Wall",buildcost:25,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall.webp"},
+    {name:"Armored Foundation",grade:"HQM",type:"Foundation",buildcost:25,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-foundation.webp"},
+    {name:"Armored Triangle Foundation",grade:"HQM",type:"TriangleFoundation",buildcost:13,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-foundation-triangle.webp"},
+    {name:"Armored Floor",grade:"HQM",type:"Floor",buildcost:13,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor.webp"},
+    {name:"Armored FloorTriangle",grade:"HQM",type:"Floor",buildcost:7,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor-triangle.webp"},
+    {name:"Armored Window",grade:"HQM",type:"WindowFrame",buildcost:18,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-window.webp"},
+    {name:"Armored HalfWall",grade:"HQM",type:"HalfWall",buildcost:25,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-half.webp"},
+    {name:"Armored LowWall",grade:"HQM",type:"LowWall",buildcost:13,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-low.webp"},
+    {name:"Armored Doorway",grade:"HQM",type:"Frame",buildcost:18,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-doorway.webp"},
+    {name:"Armored WallFrame",grade:"HQM",type:"Frame",buildcost:13,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-wall-frame.webp"},
+    {name:"Armored FloorFrame",grade:"HQM",type:"Frame",buildcost:13,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor-frame.webp"},
+    {name:"Armored Triangle FloorFrame",grade:"HQM",type:"Frame",buildcost:7,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-floor-triangle-frame.webp"},
+    {name:"Armored Roof",grade:"HQM",type:"Roof",buildcost:13,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-roof.webp"},
+    {name:"Armored RoofTriangle",grade:"HQM",type:"Roof",buildcost:13,hp:2000,res:0.5,decay:12,img:"https://cdn.rusthelp.com/images/256/armored-roof-triangle.webp"},
 /* Doors */
-    {name:"Wood Door",grade:"Wood",type:"Door",buildcost:300,hp:200,decay:3,img:"https://cdn.rusthelp.com/images/256/door-hinged-wood.webp"},
-    {name:"Wood Double Door",grade:"Wood",type:"Door",buildcost:350,hp:200,decay:3,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-wood.webp"},
-    {name:"Sheet Metal Door",grade:"Metal",type:"Door",buildcost:150,hp:250,decay:8,img:"https://cdn.rusthelp.com/images/256/door-hinged-metal.webp"},
-    {name:"Sheet Metal Double Door",grade:"Metal",type:"Door",buildcost:200,hp:250,decay:8,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-metal.webp"},
-    {name:"Armored Door",grade:"Armored",type:"Door",buildcost:"20 hqm and 5 gears",hp:1000,decay:12,img:"https://cdn.rusthelp.com/images/256/door-hinged-toptier.webp"},
-    {name:"Armored Double Door",grade:"Armored",type:"Door",buildcost:"25 hqm and 5 gears",hp:1000,decay:12,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-toptier.webp"},
-    {name:"Garage Door",grade:"Metal",type:"Door",buildcost:"300 metal 2 gears",hp:600,decay:8,img:"https://cdn.rusthelp.com/images/256/wall-frame-garagedoor.webp"},
-    {name:"Ladder Hatch",grade:"Metal",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-ladder-hatch.webp"},
-    {name:"Triangle Ladder Hatch",grade:"Metal",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-triangle-ladder-hatch.webp"},
+    {name:"Wood Door",grade:"Wood",type:"Door",buildcost:300,hp:200,res:2,decay:3,img:"https://cdn.rusthelp.com/images/256/door-hinged-wood.webp"},
+    {name:"Wood Double Door",grade:"Wood",type:"Door",buildcost:350,hp:200,res:2,decay:3,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-wood.webp"},
+    {name:"Sheet Metal Door",grade:"Metal",type:"Door",buildcost:150,hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/door-hinged-metal.webp"},
+    {name:"Sheet Metal Double Door",grade:"Metal",type:"Door",buildcost:200,hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-metal.webp"},
+    {name:"Armored Door",grade:"Armored",type:"Door",buildcost:"20 hqm and 5 gears",hp:1000,res:0.8,decay:12,img:"https://cdn.rusthelp.com/images/256/door-hinged-toptier.webp"},
+    {name:"Armored Double Door",grade:"Armored",type:"Door",buildcost:"25 hqm and 5 gears",hp:1000,res:0.8,decay:12,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-toptier.webp"},
+    {name:"Garage Door",grade:"Metal",type:"Door",buildcost:"300 metal 2 gears",hp:600,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/wall-frame-garagedoor.webp"},
+    {name:"Ladder Hatch",grade:"Metal",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-ladder-hatch.webp"},
+    {name:"Triangle Ladder Hatch",grade:"Metal",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-triangle-ladder-hatch.webp"},
 
 /* Windows */
 
@@ -93,11 +92,10 @@ let ItemList=[
 /* Weapons */
 [
 
-
-
 ],
 /* Explosives */
 [
+{name:"Beancan grenade", craftCost:"60 gunpowder 20 metal",dmg:115,splash:4.5,maxDelay:4,minDelay:3.5,img:"https://wiki.rustclash.com/img/items180/grenade.beancan.png"},
 
 
 ],
@@ -144,7 +142,16 @@ img=Item.img
 
 </script>
 
+<svg width="100vw" height="100%" style="position:absolute;opacity:0,5; z-index:1;top:0; left:0; display:{popupDisplay};">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <rect width="100%" height="100%" style="fill=#000000;" on:click={()=>popupDisplay="none"}></rect>
+</svg>
+    <rect width="100%" height="100%" filter="url(#noise)" fill="#000000"></rect>
 <input type="text" placeholder="Search" class="search" bind:value={searchString}/>
+<button class="pageButton" on:click={()=>CurrentCategory=0}>Buildings</button>
+<button class="pageButton" style="left: 33.7%;" on:click={()=>CurrentCategory=1}>Weapons</button>
+<button class="pageButton" style="left: 38.4%;" on:click={()=>CurrentCategory=2}>Explosives</button>
 <section class="ScrollableGrid">
     {#if searchString.length >0}
         {#each searchItem(searchString) as Item}
@@ -156,7 +163,7 @@ img=Item.img
             </button>
         {/each}
     {:else}
-        {#each ItemList[0] as Item}
+        {#each ItemList[CurrentCategory] as Item}
             <button class="Item" on:click={()=>InfoPopup(Item)}>
                 <div style="width: 90%; height:80%;" >
                 <img src={Item.img} alt=Item.name>
@@ -167,14 +174,19 @@ img=Item.img
     {/if}
 </section>
 <div style="display: {popupDisplay};" class="InfoPopup">
-<h1 style="font-size: 40px; position:absolute; top:8%; left:5%;">{itemname}</h1>
-<img src={img} alt={itemname}>
-<h2>Health:{hp}</h2>
-<h2>DecayRate:{decay}</h2>
-<h2>Buildcost:{buildcost}</h2>
+    <h1 style="font-size: 40px; position:absolute; top:8%; left:5%;">{itemname}</h1>
+    <img style="position: absolute; top:16%; left:5%; border: #717171 2px solid; border-radius:20px;" src={img} alt={itemname}>
+        <section class="StatGrid">
+            <h2 style=" font-size:20px; justify-self:center;">Health: {hp}hp</h2>
+            <h2 style=" font-size:20px; justify-self:center;">Decay: {decay}h</h2>
+            <h2 style=" font-size:20px; justify-self:center;">Buildcost: {buildcost} {grade}</h2>
+        </section>
+        <section class ="RaidInfo">
 
 
-</div>
+        </section>
+
+</div>  
 
 
 
@@ -207,6 +219,17 @@ img=Item.img
 	border: #717171 2px solid;
 	border-radius: 10px;
 }
+.pageButton{
+    position: absolute;
+    top : 10%;
+    left: 29%;
+    height: 4.8%;
+    border: none;
+    background-color: #1f1c2b;
+    color : rgb(135, 58, 0);
+    border: #717171 2px solid;
+    border-radius: 10px;
+}
 .Item  {
     display: flex;
     justify-self:center;
@@ -232,5 +255,33 @@ img=Item.img
     align-items: center;
     border-radius: 20px;
     border: #717171 solid 2px;
+}
+.StatGrid{
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr 1fr 1fr;
+    position: absolute;
+    top: 50%;
+    row-gap: 20px;
+    left: 5%;
+    width: 22%;
+    height: 30%;
+    border-radius: 20px;
+    border: #717171 solid 2px;
+    background-color: #1f1c2b;
+
+}
+.RaidInfo{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 1fr);
+    position: absolute;
+    top: 16%;
+    left: 30%;
+    width: 60%;
+    height: 64%;
+    border-radius: 20px;
+    border: #717171 solid 2px;
+    background-color: #1f1c2b;
 }
 </style>
