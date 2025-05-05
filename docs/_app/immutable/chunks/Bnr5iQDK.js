@@ -1,4 +1,4 @@
-import{s as z,n as L}from"./CqoWcwZb.js";import{S as A,i as D,d as l,b as n,c as s,g as h,e as a,h as o,s as m}from"./CPuBIAMR.js";function F(q){let i,T="Hello 👋",C,u,g=`Welcome to my first devblog post!
+import{s as z,n as L}from"./BWfIk2MJ.js";import{S as A,i as D,d as l,b as n,c as s,g as h,e as a,h as o,s as m}from"./Bp1yjbIX.js";function F(q){let i,T="Hello 👋",C,u,g=`Welcome to my first devblog post!
 Today i added all the buildables i wanted to have at the moment, copilot was for once usefull for something. I also began work on a info popupwindow when you click on the items.`,_,f,k="Changes",b,p,M="The following changes and implementations have been made in that version of the project:",y,d,P=`<li>Added the rest of the buildings to the Buildinglist
 <em>Styling
 </em>Setting up devblog</li>`,r,v,B="Features",w,x,R=`✅List Of buildings and information

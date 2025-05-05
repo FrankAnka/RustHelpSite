@@ -11,6 +11,7 @@ export default {
 		extend: {},
 	},
 	plugins: [
+		require('daisyui'),
 		forms,
 		typography,
 		skeleton({
@@ -24,4 +25,6 @@ export default {
 			},
 		}),
 	],
-};
+	daisyui: {
+		themes: ["light", "dark"]
+}};
