@@ -34,7 +34,6 @@
 	</div>
 	<div class="flex-none">
 		<label class="swap swap-rotate">
-			<!-- this hidden checkbox controls the state -->
 			<input style="visibility: hidden;" type="checkbox" class="theme-controller" value="synthwave" />
 		  
 			<!-- sun icon -->

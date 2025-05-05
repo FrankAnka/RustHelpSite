@@ -6,11 +6,12 @@ let searchResults = []
 let hp
 let decay
 let buildcost
-let type
+
 let grade
 let itemname
 let img
 let popupDisplay="none"
+let scrollGridColumns=5
 let ItemList=[
 
 /* Buildings(decay is in hours) */
@@ -113,8 +114,11 @@ let ItemList=[
 
 
 function searchItem(searchString){
+    console.log("Searching for: " + searchString);
     let searchResults = ItemList[CurrentCategory].filter(item => item.name.toLowerCase().includes(searchString.toLowerCase()));
+    
     return searchResults;
+
 }
 
 /* Also handle recent searches */
@@ -139,7 +143,6 @@ img=Item.img
 
 }
 
-
 </script>
 
 <svg width="100vw" height="100%" style="position:absolute;opacity:0,5; z-index:1;top:0; left:0; display:{popupDisplay};">
@@ -148,28 +151,56 @@ img=Item.img
     <rect width="100%" height="100%" style="fill=#000000;" on:click={()=>popupDisplay="none"}></rect>
 </svg>
     <rect width="100%" height="100%" filter="url(#noise)" fill="#000000"></rect>
-<input type="text" placeholder="Search" class="search" bind:value={searchString}/>
-<button class="pageButton" on:click={()=>CurrentCategory=0}>Buildings</button>
-<button class="pageButton" style="left: 33.7%;" on:click={()=>CurrentCategory=1}>Weapons</button>
-<button class="pageButton" style="left: 38.4%;" on:click={()=>CurrentCategory=2}>Explosives</button>
-<section class="ScrollableGrid">
+
+    <div class="join">
+        <div>
+          <div>
+            <input class="input join-item" style="position: absolute;top : 10%;left: 15%; width:15% " bind:value={searchString} placeholder="Search" />
+          </div>
+        </div>
+      </div>
+      
+      <div class="join join-vertical lg:join-horizontal" style="position: absolute; top : 10%;left: 30%; width:15% ">
+        <button class="btn join-item"on:click={()=>CurrentCategory=0}>Buildings</button>
+        <button class="btn join-item"on:click={()=>CurrentCategory=1}>Weapons</button>
+        <button class="btn join-item"on:click={()=>CurrentCategory=2}>Explosives</button>
+      </div>
+
+
+
+
+<section id="grid" class="ScrollableGrid" style="grid-template-columns:repeat({scrollGridColumns}, 1fr) ;">
     {#if searchString.length >0}
         {#each searchItem(searchString) as Item}
-            <button class="Item" on:click={()=>InfoPopup(Item)}>
-                <div style="width: 90%; height:80%;" >
-                <img src={Item.img} alt=Item.name>
-                </div>
-                <h2 style="width: 60%; text-align:center; margin-left:15%;">{Item.name}</h2>
-            </button>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div class="card bg-base-100 w-80 shadow-sm" on:click={()=>InfoPopup(Item)}>
+            <div class="card-body">
+            <h2 class="card-title">{Item.name}</h2>
+            </div>
+            <figure>
+            <img
+                src={Item.img}
+                alt="{Item.name}" />
+            </figure>
+        </div>
+    
         {/each}
     {:else}
         {#each ItemList[CurrentCategory] as Item}
-            <button class="Item" on:click={()=>InfoPopup(Item)}>
-                <div style="width: 90%; height:80%;" >
-                <img src={Item.img} alt=Item.name>
-                </div>
-                <h2 style="width: 60%; text-align:center; margin-left:15%;">{Item.name}</h2>
-            </button>
+
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div class="card bg-base-100 w-95 shadow-sm" on:click={()=>InfoPopup(Item)}>
+            <div class="card-body">
+            <h2 class="card-title">{Item.name}</h2>
+            </div>
+            <figure>
+            <img
+                src={Item.img}
+                alt="{Item.name}" />
+            </figure>
+        </div>
         {/each}
     {/if}
 </section>
@@ -192,32 +223,30 @@ img=Item.img
 
 
 <style>
+    :global(body){
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
 .ScrollableGrid{
     display: grid;
     position: absolute;
     overflow-y: scroll;
     overflow-x: hidden;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 8%;
+    column-gap: 2%;
     grid-template-rows: repeat(auto-fill, 1fr);
     border: 3px solid #717171;
     border-radius: 10px;
+    justify-items: center;
     width: 70%;
     height: 80%;
     top: 15%;
     left: 15%;
     padding: 2%;
 
-}
-.search{
-    position: absolute;
-    top : 10%;
-    left: 15%;
-    border: none;
-	background-color: #1f1c2b;
-	color : rgb(135, 58, 0);
-	border: #717171 2px solid;
-	border-radius: 10px;
 }
 .pageButton{
     position: absolute;
@@ -230,19 +259,7 @@ img=Item.img
     border: #717171 2px solid;
     border-radius: 10px;
 }
-.Item  {
-    display: flex;
-    justify-self:center;
-    justify-content: center;
-    border: #717171 solid 1px;
-    border-radius: 10px;
-    flex-direction: column;
-    width: 80%;
-    height: 100%;
-    padding: 1%;
 
-
-}
 .InfoPopup{
     position: fixed;
     top: 6%;
