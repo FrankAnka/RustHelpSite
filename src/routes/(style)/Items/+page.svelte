@@ -6,8 +6,16 @@ let searchResults = []
 let hp
 let decay
 let buildcost
-
 let grade
+let res /*resistance*/
+
+/* Explosives */
+let damage
+let totalSulfur
+let splashRadius
+let craftCost
+let tier
+
 let itemname
 let img
 let popupDisplay="none"
@@ -90,26 +98,117 @@ let ItemList=[
 /* Windows */
 
 ],
+
+/* Explosives */
+[
+  {
+    name: "Rocket",
+    craftCost: {
+      MetalPipe: 2,
+      Gunpowder: 150,
+      Explosives: 10
+    },
+    totalSulfur: 1400,
+    damage: 275,
+    splashRadius: 3.8,
+    img: "https://wiki.rustclash.com/img/items180/ammo.rocket.basic.png",
+    tier: 3
+  },
+
+  {
+    name: "Timed Explosive Charge (C4)",
+    craftCost: {
+      Explosives: 20,
+      Cloth: 5,
+      TechTrash: 2
+    },
+    totalSulfur: 2000,
+    damage: 550,
+    splashRadius: 0,
+    img: "https://wiki.rustclash.com/img/items180/explosive.timed.png",
+    tier: 3
+  },
+  {
+    name: "Satchel Charge",
+    craftCost: {
+      BeancanGrenade: 4,
+      SmallStash: 1,
+      Rope: 1
+    },
+    totalSulfur: 480,
+    damage: 75,
+    splashRadius: 0,
+    img: "https://wiki.rustclash.com/img/items180/explosive.satchel.png",
+    tier: 1
+  },
+  {
+    name: "Beancan Grenade",
+    craftCost: {
+      Gunpowder: 60,
+      MetalFragments: 20
+    },
+    totalSulfur: 120,
+    damage: 15,
+    splashRadius: 1.5,
+    img: "https://wiki.rustclash.com/img/items180/grenade.beancan.png",
+    tier: 1
+  },
+  {
+    name: "Explosive 5.56 Rifle Ammo",
+    craftCost: {
+      MetalFragments: 10,
+      Gunpowder: 20,
+      Sulfur: 10
+    },
+    totalSulfur: 50,
+    damage: 5,
+    splashRadius: 0.5,
+    img: "https://wiki.rustclash.com/img/items180/ammo.rifle.explosive.png",
+    tier: 3
+  },
+  {
+    name: "Propane Explosive Bomb",
+    craftCost: {
+      MetalFragments: 160,
+      Scrap: 10,
+      Charcoal: 1350,
+      Sulfur: 960,
+      AnimalFat: 15,
+      Cloth: 5
+    },
+    totalSulfur: 960,
+    damage: 150.5,
+    splashRadius: 5.2,
+    img: "https://wiki.rustclash.com/img/items180/catapult.ammo.explosive.png",
+    tier:2
+  },
+  {
+  name: "MLRS Rocket",
+  craftCost: null, // Cannot be crafted
+  totalSulfur: null,
+  damage: 350,
+  splashRadius: 0,
+  img: "https://wiki.rustclash.com/img/items180/ammo.rocket.mlrs.png",
+  tier:"military"
+},
+{
+  name: "40mm HE Grenade",
+  craftCost: null, // Cannot be crafted
+  totalSulfur: null,
+  damage: 35.3,
+  splashRadius: 3.5,
+  img: "https://wiki.rustclash.com/img/items180/ammo.grenadelauncher.he.png",
+  tier:"military"
+}
+
+
+
+],
 /* Weapons */
 [
 
-],
-/* Explosives */
-[
-{name:"Beancan grenade", craftCost:"60 gunpowder 20 metal",dmg:115,splash:4.5,maxDelay:4,minDelay:3.5,img:"https://wiki.rustclash.com/img/items180/grenade.beancan.png"},
-
-
-],
-/* Clothes */
-[   
-
-
-],
-/* Food/Meds */
-[
-
-
 ]
+
 ]
 
 
@@ -122,25 +221,38 @@ function searchItem(searchString){
 }
 
 /* Also handle recent searches */
-function InfoPopup(Item){
-    popupDisplay="flex"
-let i=0
-if(i<=2){
-    i++
-    localStorage.setItem("Recent"+i,JSON.stringify(Item))
-}
-if(i=3){
-    i=1
-    localStorage.setItem("Recent"+i,JSON.stringify(Item))
-}
+function InfoPopup(Item) {
+    popupDisplay = "flex";
+    let i = 0;
 
-hp=Item.hp
-decay=Item.decay
-buildcost=Item.buildcost
-grade=Item.grade
-itemname=Item.name
-img=Item.img
+    if (i <= 2) {
+        i++;
+        localStorage.setItem("Recent" + i, JSON.stringify(Item));
+    }
+    if (i === 3) { // Fix the assignment issue here
+        i = 1;
+        localStorage.setItem("Recent" + i, JSON.stringify(Item));
+    }
 
+    // Handle data based on the current category
+    if (CurrentCategory === 0) {
+        hp = Item.hp;
+        decay = Item.decay;
+        buildcost = Item.buildcost;
+        grade = Item.grade;
+        itemname = Item.name;
+        img = Item.img;
+        res=Item.res;
+    } else if (CurrentCategory === 1) {
+        damage = Item.damage;
+        splashRadius = Item.splashRadius;
+        totalSulfur = Item.totalSulfur;
+        craftCost = Item.craftCost || {}; // Ensure craftCost is set
+        grade = Item.grade;
+        itemname = Item.name;
+        img = Item.img;
+        tier=Item.tier;
+    }
 }
 
 </script>
@@ -159,15 +271,13 @@ img=Item.img
           </div>
         </div>
       </div>
-      
+
       <div class="join join-vertical lg:join-horizontal" style="position: absolute; top : 10%;left: 30%; width:15% ">
         <button class="btn join-item"on:click={()=>CurrentCategory=0}>Buildings</button>
-        <button class="btn join-item"on:click={()=>CurrentCategory=1}>Weapons</button>
-        <button class="btn join-item"on:click={()=>CurrentCategory=2}>Explosives</button>
+        <button class="btn join-item"on:click={()=>CurrentCategory=1}>Explosives</button>
+        <button class="btn join-item"on:click={()=>CurrentCategory=2}>Weapons</button>
+
       </div>
-
-
-
 
 <section id="grid" class="ScrollableGrid" style="grid-template-columns:repeat({scrollGridColumns}, 1fr) ;">
     {#if searchString.length >0}
@@ -204,20 +314,127 @@ img=Item.img
         {/each}
     {/if}
 </section>
-<div style="display: {popupDisplay};" class="InfoPopup">
+
+
+
+
+<div style="display: {popupDisplay}; font-family:'Times New Roman', Times, serif;margin: 0;padding: 0;" class="InfoPopup">
+
+  {#if CurrentCategory === 0}
     <h1 style="font-size: 40px; position:absolute; top:8%; left:5%;">{itemname}</h1>
     <img style="position: absolute; top:16%; left:5%; border: #717171 2px solid; border-radius:20px;" src={img} alt={itemname}>
-        <section class="StatGrid">
-            <h2 style=" font-size:20px; justify-self:center;">Health: {hp}hp</h2>
-            <h2 style=" font-size:20px; justify-self:center;">Decay: {decay}h</h2>
-            <h2 style=" font-size:20px; justify-self:center;">Buildcost: {buildcost} {grade}</h2>
-        </section>
-        <section class ="RaidInfo">
 
 
-        </section>
+      <div class="stats stats-vertical shadow" style=" overflow-y:hidden;position: absolute; top: 50%; left: 5%; width: 22%; height: 30%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
+        <div class="stat">
+          <div class="stat-title">Health</div>
+          <div class="stat-value">{hp}</div>
+        </div>
+      
+        <div class="stat">
+          <div class="stat-title">Decay (hours)</div>
+          <div class="stat-value">{decay}</div>
+        </div>
+      
+        <div class="stat">
+          <div class="stat-title">Buildcost</div>
+          <div class="stat-value">{buildcost} {grade}</div>
+        </div>
+      </div>
 
-</div>  
+      <div class="overflow-x-auto" style="position: absolute; left: 33%; top:16%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
+        <table class="table">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Damage</th>
+              <th>Quantity</th>
+              <th>Total sulfur</th>
+            </tr>
+          </thead>
+          <tbody>
+            {#each ItemList[1] as item}
+            <tr class="hover:bg-base-300">
+              <th>{item.name}</th>   
+              <td>{item.damage*res}</td>
+              <td>{Math.ceil(hp/(item.damage*res))}</td>
+              <td>{item.totalSulfur*Math.ceil(hp/(item.damage*res))}</td>
+            </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+  {:else if CurrentCategory === 1}
+    <h1 style="font-size: 40px; position:absolute; top:8%; left:5%;">{itemname}</h1>
+    <img style="position: absolute; top:20%; left:8%; border: #717171 2px solid; border-radius:20px;transform:scale(1.4);" src={img} alt={itemname}>
+    <div class="stats stats-vertical shadow" style=" overflow-y:hidden;position: absolute; top: 50%; left: 5%; width: 22%; height: 30%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
+        <div class="stat">
+          <div class="stat-title">Damage</div>
+          <div class="stat-value">{damage}</div>
+        </div>
+      
+        <div class="stat">
+          <div class="stat-title">Splash Radius(meters)</div>
+          <div class="stat-value">{splashRadius}</div>
+        </div>
+      
+        <div class="stat">
+          <div class="stat-title">Total Sulfur cost</div>
+          <div class="stat-value">{totalSulfur}</div>
+        </div>
+      </div>
+      
+      <div style="position: absolute; z-index: 10; top: 13%; left: 58%;">
+        <!-- svelte-ignore empty-block -->
+        {#if tier==="military"}
+        <h2 style="font-size:20px; justify-self:center;">Military tier</h2>
+        {:else}
+        <h2 style="font-size:20px; justify-self:center;">Tier {tier}</h2>
+        {/if}
+
+      </div>
+
+
+
+    <section class="MoreInfo">
+        {#if craftCost && Object.keys(craftCost).length > 0}
+        
+            <div  style="width: 100%;">
+              <h2 style="font-size:20px; justify-self:center;">Crafting</h2>
+              <table class="table">
+                <!-- head -->
+                
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- row 1 -->
+                  {#each Object.entries(craftCost) as [material, amount]}
+                  <tr>
+                    
+                    <td>{material}</td>
+                    <td>{amount}</td>
+                    
+                  </tr>
+                  {/each}
+                </tbody>
+                
+              </table>
+            </div>
+        {:else}
+            <h3 style="font-size:18px; justify-self:center;">Item cannot be crafted</h3>
+        {/if}
+    </section>
+  {/if}
+</div>
 
 
 
@@ -248,17 +465,6 @@ img=Item.img
     padding: 2%;
 
 }
-.pageButton{
-    position: absolute;
-    top : 10%;
-    left: 29%;
-    height: 4.8%;
-    border: none;
-    background-color: #1f1c2b;
-    color : rgb(135, 58, 0);
-    border: #717171 2px solid;
-    border-radius: 10px;
-}
 
 .InfoPopup{
     position: fixed;
@@ -273,24 +479,9 @@ img=Item.img
     border-radius: 20px;
     border: #717171 solid 2px;
 }
-.StatGrid{
+.MoreInfo{
     display: grid;
-    grid-template-columns: 1fr ;
-    grid-template-rows: 1fr 1fr 1fr;
-    position: absolute;
-    top: 50%;
-    row-gap: 20px;
-    left: 5%;
-    width: 22%;
-    height: 30%;
-    border-radius: 20px;
-    border: #717171 solid 2px;
-    background-color: #1f1c2b;
-
-}
-.RaidInfo{
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, 1fr);
     grid-template-rows: repeat(auto-fill, 1fr);
     position: absolute;
     top: 16%;
@@ -298,7 +489,14 @@ img=Item.img
     width: 60%;
     height: 64%;
     border-radius: 20px;
-    border: #717171 solid 2px;
     background-color: #1f1c2b;
+}
+h1,h2,h3{
+    color: #ffffff;
+    font-family:'Times New Roman', Times, serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    
 }
 </style>

@@ -1,0 +1,20 @@
+
+---
+title: Version 0.0.2
+date: "2025-05-07"
+---
+
+# Hello 
+
+
+
+## Changes
+
+
+## Features
+    ✅List Of buildings and information
+    ✅Generall Styling for most objects
+    ✅Navigation and general Menu setup 
+
+<hr>
+<br>
