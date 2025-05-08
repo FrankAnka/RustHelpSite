@@ -8,6 +8,7 @@ let decay
 let buildcost
 let grade
 let res /*resistance*/
+let ObtainVisiblity = "none"
 
 /* Explosives */
 let damage
@@ -17,6 +18,8 @@ let craftCost
 let tier
 
 let itemname
+let local /*location*/
+let dropRate
 let img
 let popupDisplay="none"
 let scrollGridColumns=5
@@ -89,11 +92,11 @@ let ItemList=[
     {name:"Wood Double Door",grade:"Wood",type:"Door",buildcost:350,hp:200,res:2,decay:3,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-wood.webp"},
     {name:"Sheet Metal Door",grade:"Metal",type:"Door",buildcost:150,hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/door-hinged-metal.webp"},
     {name:"Sheet Metal Double Door",grade:"Metal",type:"Door",buildcost:200,hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-metal.webp"},
-    {name:"Armored Door",grade:"Armored",type:"Door",buildcost:"20 hqm and 5 gears",hp:1000,res:0.8,decay:12,img:"https://cdn.rusthelp.com/images/256/door-hinged-toptier.webp"},
-    {name:"Armored Double Door",grade:"Armored",type:"Door",buildcost:"25 hqm and 5 gears",hp:1000,res:0.8,decay:12,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-toptier.webp"},
-    {name:"Garage Door",grade:"Metal",type:"Door",buildcost:"300 metal 2 gears",hp:600,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/wall-frame-garagedoor.webp"},
-    {name:"Ladder Hatch",grade:"Metal",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-ladder-hatch.webp"},
-    {name:"Triangle Ladder Hatch",grade:"Metal",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-triangle-ladder-hatch.webp"},
+    {name:"Armored Door",type:"Door",buildcost:"20 hqm and 5 gears",hp:1000,res:0.8,decay:12,img:"https://cdn.rusthelp.com/images/256/door-hinged-toptier.webp"},
+    {name:"Armored Double Door",type:"Door",buildcost:"25 hqm and 5 gears",hp:1000,res:0.8,decay:12,img:"https://cdn.rusthelp.com/images/256/door-double-hinged-toptier.webp"},
+    {name:"Garage Door",type:"Door",buildcost:"300 metal 2 gears",hp:600,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/wall-frame-garagedoor.webp"},
+    {name:"Ladder Hatch",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-ladder-hatch.webp"},
+    {name:"Triangle Ladder Hatch",type:"Door",buildcost:"1 ladder 300 metal 3 gears",hp:250,res:0.8,decay:8,img:"https://cdn.rusthelp.com/images/256/floor-triangle-ladder-hatch.webp"},
 
 /* Windows */
 
@@ -112,9 +115,10 @@ let ItemList=[
     damage: 275,
     splashRadius: 3.8,
     img: "https://wiki.rustclash.com/img/items180/ammo.rocket.basic.png",
-    tier: 3
+    tier: 3,
+    dropRate: ["97%", "25%", "6%"],
+    location: ["APC Crate (Bradley)", "Helicopter Crate", "Locked Crate"]
   },
-
   {
     name: "Timed Explosive Charge (C4)",
     craftCost: {
@@ -124,9 +128,11 @@ let ItemList=[
     },
     totalSulfur: 2000,
     damage: 550,
-    splashRadius: 0,
+    splashRadius: 4,
     img: "https://wiki.rustclash.com/img/items180/explosive.timed.png",
-    tier: 3
+    tier: 3,
+    dropRate: ["25%", "25%", "13%"],
+    location: ["APC Crate (Bradley)", "Helicopter Crate", "Locked Crate"]
   },
   {
     name: "Satchel Charge",
@@ -137,9 +143,17 @@ let ItemList=[
     },
     totalSulfur: 480,
     damage: 75,
-    splashRadius: 0,
+    splashRadius: 4,
     img: "https://wiki.rustclash.com/img/items180/explosive.satchel.png",
-    tier: 1
+    tier: 1,
+    dropRate: ["28.6%", "0.5%", "1%", "0.5%", "0.4%"],
+    location: [
+      "Supply Drop",
+      "Crate",
+      "Sunken Chest",
+      "Underwater Lab Blue Crate",
+      "Wagon Crate"
+    ]
   },
   {
     name: "Beancan Grenade",
@@ -151,7 +165,15 @@ let ItemList=[
     damage: 15,
     splashRadius: 1.5,
     img: "https://wiki.rustclash.com/img/items180/grenade.beancan.png",
-    tier: 1
+    tier: 1,
+    dropRate: ["2%", "2%", "2%", "0.5%", "1%"],
+    location: [
+      "Elite Tier Crate",
+      "Heavy Scientist",
+      "Underwater Lab Elite Crate",
+      "Crate",
+      "Sunken Chest"
+    ]
   },
   {
     name: "Explosive 5.56 Rifle Ammo",
@@ -164,7 +186,15 @@ let ItemList=[
     damage: 5,
     splashRadius: 0.5,
     img: "https://wiki.rustclash.com/img/items180/ammo.rifle.explosive.png",
-    tier: 3
+    tier: 3,
+    dropRate: ["19%", "15%", "12%", "7%", "6%"],
+    location: [
+      "APC Crate (Bradley)",
+      "Helicopter Crate",
+      "Supply Drop",
+      "Underwater Lab Ammo Crate",
+      "Locked Crate"
+    ]
   },
   {
     name: "Propane Explosive Bomb",
@@ -180,34 +210,38 @@ let ItemList=[
     damage: 150.5,
     splashRadius: 5.2,
     img: "https://wiki.rustclash.com/img/items180/catapult.ammo.explosive.png",
-    tier:2
+    tier: 2,
+    dropRate: ["Unlock through tech tree"],
+    location: ["Unknown"]
   },
   {
-  name: "MLRS Rocket",
-  craftCost: null, // Cannot be crafted
-  totalSulfur: null,
-  damage: 350,
-  splashRadius: 0,
-  img: "https://wiki.rustclash.com/img/items180/ammo.rocket.mlrs.png",
-  tier:"military"
-},
-{
-  name: "40mm HE Grenade",
-  craftCost: null, // Cannot be crafted
-  totalSulfur: null,
-  damage: 35.3,
-  splashRadius: 3.5,
-  img: "https://wiki.rustclash.com/img/items180/ammo.grenadelauncher.he.png",
-  tier:"military"
-}
-
-
-
-],
-/* Weapons */
-[
-
+    name: "MLRS Rocket",
+    craftCost: null,
+    totalSulfur: null,
+    damage: 350,
+    splashRadius: 10,
+    img: "https://wiki.rustclash.com/img/items180/ammo.rocket.mlrs.png",
+    tier: "military",
+    dropRate: ["97%", "25%", "6%"],
+    location: ["APC Crate (Bradley)", "Helicopter Crate", "Locked Crate"]
+  },
+  {
+    name: "40mm HE Grenade",
+    craftCost: null,
+    totalSulfur: null,
+    damage: 35.3,
+    splashRadius: 3.5,
+    img: "https://wiki.rustclash.com/img/items180/ammo.grenadelauncher.he.png",
+    tier: "military",
+    dropRate: ["14%", "14%", "14%"],
+    location: [
+      "Heavy Scientist",
+      "Heavy Scientist With Minigun",
+      "Heavy Scientist With Flamethrower"
+    ]
+  }
 ]
+
 
 ]
 
@@ -252,6 +286,8 @@ function InfoPopup(Item) {
         itemname = Item.name;
         img = Item.img;
         tier=Item.tier;
+        local=Item.location;
+        dropRate=Item.dropRate;
     }
 }
 
@@ -275,11 +311,10 @@ function InfoPopup(Item) {
       <div class="join join-vertical lg:join-horizontal" style="position: absolute; top : 10%;left: 30%; width:15% ">
         <button class="btn join-item"on:click={()=>CurrentCategory=0}>Buildings</button>
         <button class="btn join-item"on:click={()=>CurrentCategory=1}>Explosives</button>
-        <button class="btn join-item"on:click={()=>CurrentCategory=2}>Weapons</button>
 
       </div>
 
-<section id="grid" class="ScrollableGrid" style="grid-template-columns:repeat({scrollGridColumns}, 1fr) ;">
+<section id="grid" class="ScrollableGrid no-scrollbar" style="grid-template-columns:repeat({scrollGridColumns}, 1fr) ;">
     {#if searchString.length >0}
         {#each searchItem(searchString) as Item}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -325,7 +360,7 @@ function InfoPopup(Item) {
     <img style="position: absolute; top:16%; left:5%; border: #717171 2px solid; border-radius:20px;" src={img} alt={itemname}>
 
 
-      <div class="stats stats-vertical shadow" style=" overflow-y:hidden;position: absolute; top: 50%; left: 5%; width: 22%; height: 30%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
+      <div class="stats stats-vertical shadow no-scrollbar" style="overflow-y: scroll; position: absolute; top: 50%; left: 5%; width: 22%; height: 30%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
         <div class="stat">
           <div class="stat-title">Health</div>
           <div class="stat-value">{hp}</div>
@@ -338,7 +373,7 @@ function InfoPopup(Item) {
       
         <div class="stat">
           <div class="stat-title">Buildcost</div>
-          <div class="stat-value">{buildcost} {grade}</div>
+          <div class="stat-value">{buildcost} {grade||""}</div>
         </div>
       </div>
 
@@ -387,8 +422,9 @@ function InfoPopup(Item) {
           <div class="stat-title">Total Sulfur cost</div>
           <div class="stat-value">{totalSulfur}</div>
         </div>
+        
       </div>
-      
+      <button class="btn btn-xl btn-accent" style="position: absolute;top:80%;left:10%;" on:click={() => ObtainVisiblity = ObtainVisiblity === "none" ? "block" : "none"}>Obtaining</button>
       <div style="position: absolute; z-index: 10; top: 13%; left: 58%;">
         <!-- svelte-ignore empty-block -->
         {#if tier==="military"}
@@ -396,9 +432,26 @@ function InfoPopup(Item) {
         {:else}
         <h2 style="font-size:20px; justify-self:center;">Tier {tier}</h2>
         {/if}
-
+        
       </div>
-
+      
+    <table class="table" style="position:absolute;top: 67%;left:30%;width:auto;height:28%;border-radius: 20px; background-color: #1f1c2b;display:{ObtainVisiblity};z-index: 10;">
+        <!-- head -->
+        <thead>
+            <tr>
+                <th>Source</th>
+                <th>Droprate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#each (local || []) as loc, index}
+                <tr class="hover:bg-base-300">
+                    <th>{loc}</th>
+                    <td>{dropRate?.[index] || "N/A"}</td>
+                </tr>
+            {/each}
+        </tbody>
+    </table>
 
 
     <section class="MoreInfo">
@@ -490,6 +543,7 @@ function InfoPopup(Item) {
     height: 64%;
     border-radius: 20px;
     background-color: #1f1c2b;
+  
 }
 h1,h2,h3{
     color: #ffffff;
@@ -498,5 +552,13 @@ h1,h2,h3{
     margin: 0;
     padding: 0;
     
+}
+
+.no-scrollbar {
+    scrollbar-width: none; /* For Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* For Chrome, Edge, and Safari */
 }
 </style>
