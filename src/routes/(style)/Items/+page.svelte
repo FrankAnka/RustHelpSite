@@ -116,8 +116,8 @@ let ItemList=[
     splashRadius: 3.8,
     img: "https://wiki.rustclash.com/img/items180/ammo.rocket.basic.png",
     tier: 3,
-    dropRate: ["97%", "25%", "6%"],
-    location: ["APC Crate (Bradley)", "Helicopter Crate", "Locked Crate"]
+    dropRate: ["25%", "5.56%"],
+    location: ["Helicopter Crate", "Locked Crate"]
   },
   {
     name: "Timed Explosive Charge (C4)",
@@ -131,8 +131,8 @@ let ItemList=[
     splashRadius: 4,
     img: "https://wiki.rustclash.com/img/items180/explosive.timed.png",
     tier: 3,
-    dropRate: ["25%", "25%", "13%"],
-    location: ["APC Crate (Bradley)", "Helicopter Crate", "Locked Crate"]
+    dropRate: ["34.39%", "25%", "13%","26.53%"],
+    location: ["APC Crate (Bradley)", "Helicopter Crate", "Locked Crate","Supply Drop"]
   },
   {
     name: "Satchel Charge",
@@ -146,7 +146,7 @@ let ItemList=[
     splashRadius: 4,
     img: "https://wiki.rustclash.com/img/items180/explosive.satchel.png",
     tier: 1,
-    dropRate: ["28.6%", "0.5%", "1%", "0.5%", "0.4%"],
+    dropRate: ["48.9%", "0.44%", "1.1%", "0.44%", "0.44%"],
     location: [
       "Supply Drop",
       "Crate",
@@ -166,7 +166,7 @@ let ItemList=[
     splashRadius: 1.5,
     img: "https://wiki.rustclash.com/img/items180/grenade.beancan.png",
     tier: 1,
-    dropRate: ["2%", "2%", "2%", "0.5%", "1%"],
+    dropRate: ["1.49%", "1.49%", "1.49%", "0.44%", "1.1%"],
     location: [
       "Elite Tier Crate",
       "Heavy Scientist",
@@ -187,7 +187,7 @@ let ItemList=[
     splashRadius: 0.5,
     img: "https://wiki.rustclash.com/img/items180/ammo.rifle.explosive.png",
     tier: 3,
-    dropRate: ["19%", "15%", "12%", "7%", "6%"],
+    dropRate: ["19%", "15%", "12.61%", "6.52%", "5.56%"],
     location: [
       "APC Crate (Bradley)",
       "Helicopter Crate",
@@ -212,7 +212,7 @@ let ItemList=[
     img: "https://wiki.rustclash.com/img/items180/catapult.ammo.explosive.png",
     tier: 2,
     dropRate: ["Unlock through tech tree"],
-    location: ["Unknown"]
+    location: ["None"]
   },
   {
     name: "MLRS Rocket",
@@ -222,8 +222,8 @@ let ItemList=[
     splashRadius: 10,
     img: "https://wiki.rustclash.com/img/items180/ammo.rocket.mlrs.png",
     tier: "military",
-    dropRate: ["97%", "25%", "6%"],
-    location: ["APC Crate (Bradley)", "Helicopter Crate", "Locked Crate"]
+    dropRate: ["100%", "15%", "50%"],
+    location: ["APC Crate (Bradley)", "Helicopter Crate", "Elite Crate"]
   },
   {
     name: "40mm HE Grenade",
@@ -350,9 +350,6 @@ function InfoPopup(Item) {
     {/if}
 </section>
 
-
-
-
 <div style="display: {popupDisplay}; font-family:'Times New Roman', Times, serif;margin: 0;padding: 0;" class="InfoPopup">
 
   {#if CurrentCategory === 0}
@@ -435,7 +432,7 @@ function InfoPopup(Item) {
         
       </div>
       
-    <table class="table" style="position:absolute;top: 67%;left:30%;width:auto;height:28%;border-radius: 20px; background-color: #1f1c2b;display:{ObtainVisiblity};z-index: 10;">
+    <table class="table" style="position:absolute;top: 50%;left:30%;width:auto;height:28%;border-radius: 20px; background-color: #1f1c2b;display:{ObtainVisiblity};z-index: 10;">
         <!-- head -->
         <thead>
             <tr>
