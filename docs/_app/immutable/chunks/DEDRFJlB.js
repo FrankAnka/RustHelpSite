@@ -1,9 +1,0 @@
-import{s as G,n as y}from"./BWfIk2MJ.js";import{S as k,i as q,d as n,b as l,c as a,g as x,e as d,h as s,s as f}from"./BQTFDNC7.js";function D(F){let i,P="Hello",C,o,S="This is the third devblog on this project and since last time i havent had the time to do much but i have made the bones for the guide page and all that i am missing is the pictures aswell as the guides themself.",v,h,j="Changes",r,p,R=`Fixed the data on droprates in the item page, chat gpt gave the wrong percentages when i created the page so i had to redo it.
-Begun work on the guide page.`,g,u,z="Features",_,m,B=`✅List Of buildings and information
-✅Generall Styling for most objects
-✅Navigation and general Menu setup
-✅Raidhelp
-✅Crafting recipes for items
-✅Popup with information
-✅Search
-✅Guide page`,c,b,w,H;return{c(){i=s("h1"),i.textContent=P,C=f(),o=s("p"),o.textContent=S,v=f(),h=s("h2"),h.textContent=j,r=f(),p=s("p"),p.textContent=R,g=f(),u=s("h2"),u.textContent=z,_=f(),m=s("p"),m.textContent=B,c=f(),b=s("hr"),w=f(),H=s("br")},l(t){i=a(t,"H1",{"data-svelte-h":!0}),x(i)!=="svelte-ggif4a"&&(i.textContent=P),C=d(t),o=a(t,"P",{"data-svelte-h":!0}),x(o)!=="svelte-145hirw"&&(o.textContent=S),v=d(t),h=a(t,"H2",{"data-svelte-h":!0}),x(h)!=="svelte-6y66jh"&&(h.textContent=j),r=d(t),p=a(t,"P",{"data-svelte-h":!0}),x(p)!=="svelte-1w8a8ef"&&(p.textContent=R),g=d(t),u=a(t,"H2",{"data-svelte-h":!0}),x(u)!=="svelte-mhy7zl"&&(u.textContent=z),_=d(t),m=a(t,"P",{"data-svelte-h":!0}),x(m)!=="svelte-zocnn4"&&(m.textContent=B),c=d(t),b=a(t,"HR",{}),w=d(t),H=a(t,"BR",{})},m(t,e){l(t,i,e),l(t,C,e),l(t,o,e),l(t,v,e),l(t,h,e),l(t,r,e),l(t,p,e),l(t,g,e),l(t,u,e),l(t,_,e),l(t,m,e),l(t,c,e),l(t,b,e),l(t,w,e),l(t,H,e)},p:y,i:y,o:y,d(t){t&&(n(i),n(C),n(o),n(v),n(h),n(r),n(p),n(g),n(u),n(_),n(m),n(c),n(b),n(w),n(H))}}}const L={title:"Version 0.0.3",date:"2025-05-14"},{title:O,date:T}=L;class V extends k{constructor(i){super(),q(this,i,null,D,G,{})}}export{V as default,L as metadata};

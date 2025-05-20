@@ -1,4 +1,9 @@
 <script>
+let width
+let join
+if(typeof window != "undefined"){
+  let width = window.innerWidth;
+}
 
 let CurrentCategory=0
 let searchString=""
@@ -246,8 +251,8 @@ let ItemList=[
 ]
 
 
+
 function searchItem(searchString){
-    console.log("Searching for: " + searchString);
     let searchResults = ItemList[CurrentCategory].filter(item => item.name.toLowerCase().includes(searchString.toLowerCase()));
     
     return searchResults;
@@ -257,16 +262,6 @@ function searchItem(searchString){
 /* Also handle recent searches */
 function InfoPopup(Item) {
     popupDisplay = "flex";
-    let i = 0;
-
-    if (i <= 2) {
-        i++;
-        localStorage.setItem("Recent" + i, JSON.stringify(Item));
-    }
-    if (i === 3) { // Fix the assignment issue here
-        i = 1;
-        localStorage.setItem("Recent" + i, JSON.stringify(Item));
-    }
 
     // Handle data based on the current category
     if (CurrentCategory === 0) {
@@ -291,6 +286,12 @@ function InfoPopup(Item) {
     }
 }
 
+if (width<768){
+  join=""
+}
+else{
+  join="lg:join-horizontal"
+}
 </script>
 
 <svg width="100vw" height="100%" style="position:absolute;opacity:0,5; z-index:1;top:0; left:0; display:{popupDisplay};">
@@ -308,13 +309,12 @@ function InfoPopup(Item) {
         </div>
       </div>
 
-      <div class="join join-vertical lg:join-horizontal" style="position: absolute; top : 10%;left: 30%; width:15% ">
+<div class="join" style="position: absolute; top : 10%;left: 30%; width:15% ">
         <button class="btn join-item"on:click={()=>CurrentCategory=0}>Buildings</button>
         <button class="btn join-item"on:click={()=>CurrentCategory=1}>Explosives</button>
+</div>
 
-      </div>
-
-<section id="grid" class="ScrollableGrid no-scrollbar" style="grid-template-columns:repeat({scrollGridColumns}, 1fr) ;">
+<section id="grid" class="ScrollableGrid no-scrollbar">
     {#if searchString.length >0}
         {#each searchItem(searchString) as Item}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -497,6 +497,7 @@ function InfoPopup(Item) {
         height: 100%;
         width: 100%;
     }
+
 .ScrollableGrid{
     display: grid;
     position: absolute;
@@ -505,6 +506,7 @@ function InfoPopup(Item) {
     row-gap: 8%;
     column-gap: 2%;
     grid-template-rows: repeat(auto-fill, 1fr);
+    grid-template-columns: repeat(5,1fr);
     border: 3px solid #717171;
     border-radius: 10px;
     justify-items: center;
@@ -557,5 +559,29 @@ h1,h2,h3{
 
 .no-scrollbar::-webkit-scrollbar {
     display: none; /* For Chrome, Edge, and Safari */
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .ScrollableGrid {
+            display: grid;
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    row-gap: 8%;
+    column-gap: 2%;
+    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-template-columns: repeat(1,1fr);
+    border: 3px solid #717171;
+    border-radius: 10px;
+    justify-items: center;
+    width: 70%;
+    height: 80%;
+    top: 15%;
+    left: 15%;
+    padding: 2%;
+
+    }
 }
 </style>

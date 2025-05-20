@@ -29,7 +29,7 @@
 	<a class="btn btn-ghost text-xl" href="{base}/">Home</a>
 	<a class="btn btn-ghost text-xl" href="{base}/Items">Items</a>
 	<a class="btn btn-ghost text-xl" href="{base}/Building">Building</a>
-	<a class="btn btn-ghost text-xl" href="{base}/Guides">Guides</a>
+	<a class="btn btn-ghost text-xl" href="{base}/Guides">Monuments</a>
 	<a class="btn btn-ghost text-xl" href="{base}/devblog">Devblog</a>
 	</div>
 	<div class="flex-none">
@@ -69,7 +69,7 @@ main{
 	display: flex;
 	flex-direction: row;
 	width: 100vw;
-	height: 200vh;
+	height: 180vh;
 	background-color: #0f0e14;
 
 }
