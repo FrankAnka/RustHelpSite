@@ -1,4 +1,4 @@
-import{s as R,n as g}from"./BqKxdVtS.js";import{S as k,i as q,d as n,b as l,c as h,g as r,e as p,h as m,s as u}from"./L5iqWZqy.js";function z(P){let i,w="Hello",f,s,H=`This is the second devblog on this project and since last time ive changed the way i style from using pure css to npw using premade elements from daisy.ui.
+import{s as R,n as g}from"./BqKxdVtS.js";import{S as k,i as q,d as n,b as l,c as h,g as r,e as p,h as m,s as u}from"./BisPoXTb.js";function z(P){let i,w="Hello",f,s,H=`This is the second devblog on this project and since last time ive changed the way i style from using pure css to npw using premade elements from daisy.ui.
 I have also pretty much completed the item page, i added explosives, added all the data and made sure it was displayed correctly. Currently the data is a bit off because i cannot find correct ones online and i need to test for my self.
 I also added a raid helper thing that shows you how much it would take to raid something.
 I also revamped the styling of the entire page.`,c,a,j="Changes",v,o,S="Features",x,d,I=`✅List Of buildings and information

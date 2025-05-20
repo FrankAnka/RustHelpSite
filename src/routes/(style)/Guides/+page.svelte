@@ -1,52 +1,418 @@
 <script>
 let popupDisplay = "none";
 let video
-let Monuments =[
-   [ // No keycard required
-    { name: "Abandoned Cabins", img: "Abondoned cabins.webp", vid: "" },
-    { name: "Dome", img: "Dome.jpg", vid: "" },
-    { name: "Ferry Terminal", img: "ferry.jpg", vid: "" },
-    { name: "Junkyard", img: "junkyard.jpg", vid: "" },
-    { name: "Lighthouse", img: "lighthouse.jpg", vid: "" },
-    { name: "Mining Outpost", img: "mining-outpost.jpg", vid: "" },
-    { name: "Oxum's Gas Station", img: "Oxums.jpg", vid: "" },
-    { name: "Supermarket", img: "supermarket.jpg", vid: "" },
-    { name: "Abandoned Military Base", img: "Abandonded-Military-Base.jpg", vid: "" },
-    { name: "Jungle Ziggurat", img:"jungle ziggurat.jpg", vid:""},
+let Loot
+let Name
+let img
+
+let Monuments = [
+ [ // No keycard required
+  {
+    name: "Abandoned Cabins",
+    img: "Abondoned cabins.webp",
+    vid: "",
+    Loot: {
+      crates: {
+        "Basic Crate": 2,
+        "Food Crate": 2,
+        "Barrel": 4
+      },
+      cards: [],
+      diesel: false
+    }
+  },
+  {
+    name: "Dome",
+    img: "Dome.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 3,
+        "Basic Crate": 4,
+        "Food Crate": 2
+      },
+      cards: [],
+      diesel: false
+    }
+  },
+  {
+    name: "Ferry Terminal",
+    img: "ferry.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Basic Crate": 4,
+        "Food Crate": 3,
+        "Barrel": 5
+      },
+      cards: ["Green Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Junkyard",
+    img: "junkyard.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Basic Crate": 4,
+        "Food Crate": 2,
+        "Barrel": 6
+      },
+      cards: ["Green Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Lighthouse",
+    img: "lighthouse.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Basic Crate": 3,
+        "Food Crate": 2,
+        "Barrel": 4
+      },
+      cards: ["Green Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Mining Outpost",
+    img: "mining-outpost.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Basic Crate": 2,
+        "Food Crate": 1,
+        "Barrel": 4
+      },
+      cards: [""],
+      diesel: false
+    }
+  },
+  {
+    name: "Oxum's Gas Station",
+    img: "Oxums.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Basic Crate": 2,
+        "Food Crate": 2,
+        "Barrel": 4
+      },
+      cards: ["Green Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Supermarket",
+    img: "supermarket.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Basic Crate": 2,
+        "Food Crate": 3,
+        "Barrel": 4
+      },
+      cards: ["Green Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Abandoned Military Base",
+    img: "Abandonded-Military-Base.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 3,
+        "Basic Crate": 3,
+        "Barrel": 6
+      },
+      cards: [],
+      diesel: false
+    }
+  },
+  {
+    name: "Jungle Ziggurat",
+    img: "jungle ziggurat.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 2,
+        "Basic Crate": 3,
+        "Barrel": 4
+      },
+      cards: [],
+      diesel: false
+    }
+  }
 ],
   [ // Green keycard required
-    { name: "Harbor", img: "harbor.jpg", vid: "" },
-    { name: "Satellite Dish ", img: "Satallite-Dish.jpg", vid: "" },
-    { name: "Sewer Branch", img: "Sewer-Branch-Monument.jpg", vid: "" },
-],
+  {
+    name: "Harbor",
+    img: "harbor.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 1,
+        "Basic Crate": 3,
+        "Food Crate": 2,
+        "Barrel": 4
+      },
+      cards: ["Blue Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Satellite Dish ",
+    img: "Satallite-Dish.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 1,
+        "Basic Crate": 3,
+        "Food Crate": 1,
+        "Barrel": 4
+      },
+      cards: ["Blue Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Sewer Branch",
+    img: "Sewer-Branch-Monument.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 1,
+        "Basic Crate": 3,
+        "Food Crate": 2,
+        "Barrel": 4
+      },
+      cards: ["Blue Card"],
+      diesel: false
+    }
+  }
+]
+,
   [ // Blue keycard required
-    { name: "Airfield", img: "airfield.png", vid: "" },
-    { name: "Power Plant", img: "Power_Plant.webp", vid: "" },
-    { name: "Train Yard", img: "trainyard.png", vid: "" },
-    { name: "Water Treatment Plant", img: "watertreat.avif", vid: "" },
-    { name: "Nuclear Missile Silo", img: "missile silo.jpg", vid: "" },
-    { name: "Arctic Research Base", img: "arcticbase.jpg", vid: "" },
+  {
+    name: "Airfield",
+    img: "airfield.png",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 4,
+        "Basic Crate": 4,
+        "Food Crate": 3,
+        "Barrel": 6
+      },
+      cards: ["Red Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Power Plant",
+    img: "Power_Plant.webp",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 4,
+        "Basic Crate": 4,
+        "Food Crate": 2,
+        "Barrel": 6
+      },
+      cards: ["Red Card","Green Card"],
+      diesel: true
+    }
+  },
+  {
+    name: "Train Yard",
+    img: "trainyard.png",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 4,
+        "Basic Crate": 4,
+        "Food Crate": 2,
+        "Barrel": 6
+      },
+      cards: ["Red Card"],
+      diesel: true
+    }
+  },
+  {
+    name: "Water Treatment Plant",
+    img: "watertreat.avif",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 3,
+        "Basic Crate": 4,
+        "Food Crate": 2,
+        "Barrel": 6
+      },
+      cards: ["Red Card"],
+      diesel: true
+    }
+  },
+  {
+    name: "Nuclear Missile Silo",
+    img: "missile silo.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Elite Crate": 2,
+        "Military Crate": 2,
+        "Basic Crate": 2,
+        "Food Crate": 1
+      },
+      cards: ["Red Card"],
+      diesel: false
+    }
+  },
+  {
+    name: "Arctic Research Base",
+    img: "arcticbase.jpg",
+    vid: "",
+    Loot: {
+      crates: {
+        "Military Crate": 2,
+        "Basic Crate": 3,
+        "Food Crate": 2,
+        "Barrel": 5
+      },
+      cards: ["Red Card"],
+      diesel: false
+    }
+  }
 ],
   [ // Red keycard required
-    
-    { name: "Cargo Ship", img: "cargo.webp", vid: "" },
-    { name: "Large Oil Rig", img: "Loil.jpg", vid: "" },
-    { name: "Launch Site", img: "launch.webp", vid: "" },
-    { name: "Military Tunnel", img: "tunnels.jpg", vid: "" },
-    { name: "Small Oil Rig", img: "smoil.png", vid: "" },
-    { name: "Underwater Lab", img: "labs.jpg", vid: "" },
-    { name: "Giant Excavator Pit", img: "excav.webp", vid: "" },
-]
-]
+    {
+      name: "Cargo Ship",
+      img: "cargo.webp",
+      vid: "",
+      Loot: {
+        crates: {
+          "Elite Crate": 3,
+          "Military Crate": 4,
+          "Basic Crate": 4,
+          "Barrel": 6,
+          "Locked Crate": 4
+        },
+        cards: [],
+        diesel: false
+      }
+    },
+    {
+      name: "Large Oil Rig",
+      img: "Loil.jpg",
+      vid: "",
+      Loot: {
+        crates: {
+          "Elite Crate": 3,
+          "Military Crate": 4,
+          "Basic Crate": 4,
+          "Barrel": 6,
+          "Locked Crate": 1
+        },
+        cards: [],
+        diesel: true
+      }
+    },
+    {
+      name: "Launch Site",
+      img: "launch.webp",
+      vid: "",
+      Loot: {
+        crates: {
+          "Elite Crate": 4,
+          "Military Crate": 12,
+          "Basic Crate": 4,
+          "Food Crate": 20,
+          "Barrel": 6
+        },
+        cards: [],
+        diesel: false
+      }
+    },
+    {
+      name: "Military Tunnel",
+      img: "tunnels.jpg",
+      vid: "",
+      Loot: {
+        crates: {
+          "Elite Crate": 10,
+          "Military Crate": 4,
+          "Basic Crate": 4,
+          "Food Crate": 14,
+          "Barrel": 6
+        },
+        cards: [],
+        diesel: false
+      }
+    },
+    {
+      name: "Small Oil Rig",
+      img: "smoil.png",
+      vid: "",
+      Loot: {
+        crates: {
+          "Elite Crate": 2,
+          "Military Crate": 3,
+          "Basic Crate": 3,
+          "Barrel": 6,
+          "Locked Crate": 1
+        },
+        cards: [],
+        diesel: true
+      }
+    },
+    {
+      name: "Underwater Lab",
+      img: "labs.jpg",
+      vid: "",
+      Loot: {
+        crates: {
+          "Elite Crate": 2,
+          "Military Crate": 4,
+          "Basic Crate": 4,
+          "Barrel": 6
+        },
+        cards: [],
+        diesel: false
+      }
+    },
+    {
+      name: "Giant Excavator Pit",
+      img: "excav.webp",
+      vid: "",
+      Loot: {
+        crates: {
+          "Military Crate": 1,
+          "Basic Crate": 1,
+          "Food Crate": 8,
+          "Barrel": 6
+        },
+        cards: [],
+        diesel: true
+      }
+    }
+  ]
+];
 
 
 function Vidpopup(x){
-popupDisplay="block";
-video = x.vid;
+popupDisplay="block"
+video = x.vid
+Name = x.name
+Loot =x.Loot
+img=x.img
 }
 </script>
 
-<svg width="100vw" height="100%" style="position:absolute;opacity:0,5; z-index:1;top:0; left:0; display:{popupDisplay};">
+<svg width="100vw" height="200%" style="position:absolute;opacity:0,5; z-index:1;top:0; left:0; display:{popupDisplay};">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <rect width="100%" height="100%" style="fill=#000000;" on:click={()=>popupDisplay="none"}></rect>
@@ -62,9 +428,9 @@ video = x.vid;
     {#each Monuments[0] as monument }
     <div class="carousel-item">
         
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-      <img src={monument.img} alt={monument.name} on:click={()=>Vidpopup(monument)}/>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+    <img src={monument.img} alt={monument.name} on:click={()=>Vidpopup(monument)}/>
     </div>
     {/each}
 </div>
@@ -77,7 +443,9 @@ video = x.vid;
     {#each Monuments[1] as monument }
     <div class="carousel-item">
         
-      <img src={monument.img} alt={monument.name} />
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+    <img src={monument.img} alt={monument.name} on:click={()=>Vidpopup(monument)} />
     </div>
     {/each}
 </div>
@@ -90,7 +458,9 @@ video = x.vid;
     {#each Monuments[2] as monument }
     <div class="carousel-item">
         
-        <img src={monument.img} alt={monument.name} />
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <img src={monument.img} alt={monument.name} on:click={()=>Vidpopup(monument)}/>
     </div>
     {/each}
 </div>
@@ -100,19 +470,51 @@ video = x.vid;
     <button class="btn">!</button>
 </div>
 <div class="carousel carousel-center rounded-box" style="position: absolute;top:140%;left:10%;width:80%;height:30%">
-    {#each Monuments[3] as monument }
+    {#each Monuments[3] as monument } 
     <div class="carousel-item">
         
-        <img src={monument.img} alt={monument.name} />
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <img src={monument.img} alt={monument.name} on:click={()=>Vidpopup(monument)} />
     </div>
     {/each}
 
 </div>
 
-<div style="display: {popupDisplay}; font-family:'Times New Roman', Times, serif;margin: 0;padding: 0;" class="InfoPopup">
-    <!-- svelte-ignore missing-declaration -->
-    <!-- svelte-ignore a11y-missing-attribute -->
-    <iframe width="100%" height="100%" src={video} frameborder="0" allowfullscreen></iframe>
+<div style="display: {popupDisplay}; font-family:'Times New Roman', Times, serif;margin: 0;padding: 0; background-image:{img}" class="InfoPopup">
+    <img src="{img}" alt="asdasdasdasd" style="z-index: -1;position:absolute; top:0%;left:1%; height:100%;width:100%;">
+    <h1 style="color: black ; top:5%;position:absolute;left:46%;">{Name}</h1>
+
+<div class="overflow-x-auto" style="position: absolute; top:15%;left:5%;width:25%;">
+<table class="table">
+    <!-- head -->
+    <thead>
+    <tr>
+        <th>Type</th>
+        <th>Amount</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- row 1 -->
+    {#if Loot}
+    {#each Object.entries(Loot.crates) as [item,amount]}
+    <tr>
+        <td>{item}</td>
+        <td>{amount}</td>
+
+
+    
+    </tr>
+    {/each}
+
+    {/if}
+    </tbody>
+</table>
+</div>
+
+
     </div>
 
 
@@ -120,12 +522,13 @@ video = x.vid;
 
 <style>
 
-h1{
+h1,h2{
     color: #ffffff;
     font-family:'Times New Roman', Times, serif;
     text-align: center;
     margin: 0;
     padding: 0;
+    font-size: xx-large;
     
 }
 .InfoPopup{
@@ -138,6 +541,9 @@ h1{
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    background-size: cover;
+
+    
 
 }
 img{
