@@ -152,7 +152,7 @@ let Monuments = [
   {
     name: "Harbor",
     img: "harbor.jpg",
-    vid: "",
+    vid: "https://youtu.be/iMYODoGRNss?si=yfPNHaGlqaYAhpwW",
     Loot: {
       crates: {
         "Military Crate": 1,
@@ -464,11 +464,11 @@ img=x.img
     </div>
     {/each}
 </div>
-
 <h1 style="position:absolute;top:135%;left:46%;font-size:40px">Tier 3</h1>
 <div style="position: absolute;top:134%;left:54%;font-size:40px" class="tooltip" data-tip="Tier 3 monuments are the highest tier of monuments with the best loot such as locked crates, Most of them require all three cards to access however cargo doesnt take any cards the same goes for excavator.">
     <button class="btn">!</button>
 </div>
+
 <div class="carousel carousel-center rounded-box" style="position: absolute;top:140%;left:10%;width:80%;height:30%">
     {#each Monuments[3] as monument } 
     <div class="carousel-item">
@@ -484,8 +484,8 @@ img=x.img
 <div style="display: {popupDisplay}; font-family:'Times New Roman', Times, serif;margin: 0;padding: 0; background-image:{img}" class="InfoPopup">
     <img src="{img}" alt="asdasdasdasd" style="z-index: -1;position:absolute; top:0%;left:1%; height:100%;width:100%;">
     <h1 style="color: black ; top:5%;position:absolute;left:46%;">{Name}</h1>
-
 <div class="overflow-x-auto" style="position: absolute; top:15%;left:5%;width:25%;">
+<!--Loot -->
 <table class="table">
     <!-- head -->
     <thead>
@@ -514,7 +514,16 @@ img=x.img
 </table>
 </div>
 
-
+{#if video}
+  <!-- svelte-ignore a11y-missing-attribute -->
+  <iframe 
+    src={video}
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="position:absolute; top:10%; left:35%; width:30%; height:40%; z-index:11; border-radius:12px; background:#000;">
+  </iframe>
+{/if}
     </div>
 
 
@@ -522,7 +531,7 @@ img=x.img
 
 <style>
 
-h1,h2{
+h1{
     color: #ffffff;
     font-family:'Times New Roman', Times, serif;
     text-align: center;
