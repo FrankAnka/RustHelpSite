@@ -4,13 +4,14 @@ let video
 let Loot
 let Name
 let img
-
+let AltVid
 let Monuments = [
  [ // No keycard required
   {
     name: "Abandoned Cabins",
     img: "Abondoned cabins.webp",
     vid: "",
+    alt:"Cabinsloot.jpg",
     Loot: {
       crates: {
         "Basic Crate": 2,
@@ -25,6 +26,7 @@ let Monuments = [
     name: "Dome",
     img: "Dome.jpg",
     vid: "",
+    alt:"DomeLoot.png",
     Loot: {
       crates: {
         "Military Crate": 3,
@@ -38,7 +40,7 @@ let Monuments = [
   {
     name: "Ferry Terminal",
     img: "ferry.jpg",
-    vid: "",
+    vid: "https://youtu.be/2nvEJuNZZKg?si=Qa3KV_Y6WazgX31b&t=213    ",
     Loot: {
       crates: {
         "Basic Crate": 4,
@@ -53,6 +55,7 @@ let Monuments = [
     name: "Junkyard",
     img: "junkyard.jpg",
     vid: "",
+    alt:"JunkyardLoot.png",
     Loot: {
       crates: {
         "Basic Crate": 4,
@@ -67,6 +70,7 @@ let Monuments = [
     name: "Lighthouse",
     img: "lighthouse.jpg",
     vid: "",
+    alt:"LighthouseLoot.png",
     Loot: {
       crates: {
         "Basic Crate": 3,
@@ -81,6 +85,7 @@ let Monuments = [
     name: "Mining Outpost",
     img: "mining-outpost.jpg",
     vid: "",
+    alt:"MiningOutpostLoot.png",
     Loot: {
       crates: {
         "Basic Crate": 2,
@@ -95,6 +100,7 @@ let Monuments = [
     name: "Oxum's Gas Station",
     img: "Oxums.jpg",
     vid: "",
+    alt:"OxumsLoot.jpg",
     Loot: {
       crates: {
         "Basic Crate": 2,
@@ -109,6 +115,7 @@ let Monuments = [
     name: "Supermarket",
     img: "supermarket.jpg",
     vid: "",
+    alt:"SupermarketLoot.jpg",
     Loot: {
       crates: {
         "Basic Crate": 2,
@@ -122,7 +129,7 @@ let Monuments = [
   {
     name: "Abandoned Military Base",
     img: "Abandonded-Military-Base.jpg",
-    vid: "",
+    vid: "https://youtu.be/CBZ16qttIO4?si=G14SMlAi9MfoCPQA",
     Loot: {
       crates: {
         "Military Crate": 3,
@@ -136,10 +143,9 @@ let Monuments = [
   {
     name: "Jungle Ziggurat",
     img: "jungle ziggurat.jpg",
-    vid: "",
+    vid: "https://youtu.be/JPDGwVgCgUU?si=X7hjQzIYwAk9xdZh&t=263",
     Loot: {
       crates: {
-        "Military Crate": 2,
         "Basic Crate": 3,
         "Barrel": 4
       },
@@ -167,7 +173,7 @@ let Monuments = [
   {
     name: "Satellite Dish ",
     img: "Satallite-Dish.jpg",
-    vid: "",
+    vid: "https://youtu.be/kYaHqiU_uRc?si=khPJZCOD2WchSWJf",
     Loot: {
       crates: {
         "Military Crate": 1,
@@ -182,7 +188,7 @@ let Monuments = [
   {
     name: "Sewer Branch",
     img: "Sewer-Branch-Monument.jpg",
-    vid: "",
+    vid: "https://youtu.be/g601suPTlUg?si=Q1Xh0CJMia-VoAob",
     Loot: {
       crates: {
         "Military Crate": 1,
@@ -200,7 +206,7 @@ let Monuments = [
   {
     name: "Airfield",
     img: "airfield.png",
-    vid: "",
+    vid: "https://youtu.be/Nmv0_y7X6zo?si=NBc2rZ8HOoJtPmhf",
     Loot: {
       crates: {
         "Military Crate": 4,
@@ -215,7 +221,7 @@ let Monuments = [
   {
     name: "Power Plant",
     img: "Power_Plant.webp",
-    vid: "",
+    vid: "https://youtu.be/FzJb9Vf_OGc?si=TnlsbJbPtpiO3kAz",
     Loot: {
       crates: {
         "Military Crate": 4,
@@ -230,7 +236,7 @@ let Monuments = [
   {
     name: "Train Yard",
     img: "trainyard.png",
-    vid: "",
+    vid: "https://youtu.be/ntoudT6eZuA?si=sNHHg4crINCBWKC2",
     Loot: {
       crates: {
         "Military Crate": 4,
@@ -245,7 +251,7 @@ let Monuments = [
   {
     name: "Water Treatment Plant",
     img: "watertreat.avif",
-    vid: "",
+    vid: "https://youtu.be/GLZaepYwJdo?si=jiz2hz9akayB-th4",
     Loot: {
       crates: {
         "Military Crate": 3,
@@ -260,7 +266,7 @@ let Monuments = [
   {
     name: "Nuclear Missile Silo",
     img: "missile silo.jpg",
-    vid: "",
+    vid: "https://youtu.be/lUPephY1j8U?si=AW5zCtj4K4omCmt-",
     Loot: {
       crates: {
         "Elite Crate": 2,
@@ -275,7 +281,7 @@ let Monuments = [
   {
     name: "Arctic Research Base",
     img: "arcticbase.jpg",
-    vid: "",
+    vid: "https://youtu.be/JeZNxXn6KQg?si=_ZpLy5RfmeMsq71C",
     Loot: {
       crates: {
         "Military Crate": 2,
@@ -292,7 +298,7 @@ let Monuments = [
     {
       name: "Cargo Ship",
       img: "cargo.webp",
-      vid: "",
+      vid: "https://youtu.be/DHMTfWCnYcs?si=LT4e52MBdVlWTQb2",
       Loot: {
         crates: {
           "Elite Crate": 3,
@@ -308,7 +314,7 @@ let Monuments = [
     {
       name: "Large Oil Rig",
       img: "Loil.jpg",
-      vid: "",
+      vid: "https://youtu.be/sSbM0onf0AM?si=hwMzcXloBof4U4qs",
       Loot: {
         crates: {
           "Elite Crate": 3,
@@ -324,7 +330,7 @@ let Monuments = [
     {
       name: "Launch Site",
       img: "launch.webp",
-      vid: "",
+      vid: "https://youtu.be/AGtTjNOAE0s?si=EF8rXjqW4PMh_UkA",
       Loot: {
         crates: {
           "Elite Crate": 4,
@@ -338,9 +344,9 @@ let Monuments = [
       }
     },
     {
-      name: "Military Tunnel",
+      name: "Military Tunnels",
       img: "tunnels.jpg",
-      vid: "",
+      vid: "https://youtu.be/Ga3SVYUivv0?si=uOIvIUFrIXdE9P0Z",
       Loot: {
         crates: {
           "Elite Crate": 10,
@@ -356,7 +362,7 @@ let Monuments = [
     {
       name: "Small Oil Rig",
       img: "smoil.png",
-      vid: "",
+      vid: "https://youtu.be/NBignVjTNzQ?si=h2wZmgcIznGTL46m",
       Loot: {
         crates: {
           "Elite Crate": 2,
@@ -372,7 +378,7 @@ let Monuments = [
     {
       name: "Underwater Lab",
       img: "labs.jpg",
-      vid: "",
+      vid: "https://youtu.be/Yj38XRHpD_o?si=FuVDqmWWENltbiTe",
       Loot: {
         crates: {
           "Elite Crate": 2,
@@ -387,7 +393,7 @@ let Monuments = [
     {
       name: "Giant Excavator Pit",
       img: "excav.webp",
-      vid: "",
+      vid: "https://youtu.be/H7eMgAUkR-U?si=qXTsvnRH1YDtJ5WB",
       Loot: {
         crates: {
           "Military Crate": 1,
@@ -403,12 +409,31 @@ let Monuments = [
 ];
 
 
+function getEmbedUrl(url) {
+    // If already an embed link, return as is
+    if (url.includes("youtube.com/embed/")) return url;
+    // Handle youtu.be short links
+    if (url.includes("youtu.be/")) {
+        const id = url.split("youtu.be/")[1].split(/[?&]/)[0];
+        return `https://www.youtube.com/embed/${id}`;
+    }
+    // Handle normal watch links
+    if (url.includes("watch?v=")) {
+        const id = url.split("watch?v=")[1].split(/[?&]/)[0];
+        return `https://www.youtube.com/embed/${id}`;
+    }
+    // Otherwise, return as is
+    return url;
+}
+
 function Vidpopup(x){
-popupDisplay="block"
-video = x.vid
-Name = x.name
-Loot =x.Loot
-img=x.img
+    popupDisplay="block";
+    video = getEmbedUrl(x.vid);
+    Name = x.name;
+    Loot = x.Loot;
+    img = x.img;
+    if(x.alt){
+    AltVid = x.alt;}
 }
 </script>
 
@@ -521,9 +546,13 @@ img=x.img
     frameborder="0"
     allow="autoplay; encrypted-media"
     allowfullscreen
-    style="position:absolute; top:10%; left:35%; width:30%; height:40%; z-index:11; border-radius:12px; background:#000;">
+    style="position:absolute; top:12%; left:35%; width:40%; height:40%; z-index:11; border-radius:12px; background:#000;">
   </iframe>
 {/if}
+{#if !video}
+    <img src={AltVid} alt="map of {Name}" style="position:absolute; top:12%; left:35%; width:40%; height:40%; z-index:11; border-radius:12px; background:#000;">
+{/if}
+
     </div>
 
 
