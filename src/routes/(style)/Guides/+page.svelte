@@ -30,8 +30,7 @@ let Monuments = [
     Loot: {
       crates: {
         "Military Crate": 3,
-        "Basic Crate": 4,
-        "Food Crate": 2
+        "Basic Crate": 4
       },
       cards: [],
       diesel: false
@@ -44,7 +43,7 @@ let Monuments = [
     Loot: {
       crates: {
         "Basic Crate": 4,
-        "Food Crate": 3,
+        "Food Crate": 2,
         "Barrel": 5
       },
       cards: ["Green Card"],
@@ -59,7 +58,6 @@ let Monuments = [
     Loot: {
       crates: {
         "Basic Crate": 4,
-        "Food Crate": 2,
         "Barrel": 6
       },
       cards: ["Green Card"],
@@ -74,7 +72,6 @@ let Monuments = [
     Loot: {
       crates: {
         "Basic Crate": 3,
-        "Food Crate": 2,
         "Barrel": 4
       },
       cards: ["Green Card"],
@@ -89,7 +86,6 @@ let Monuments = [
     Loot: {
       crates: {
         "Basic Crate": 2,
-        "Food Crate": 1,
         "Barrel": 4
       },
       cards: [""],
@@ -163,7 +159,6 @@ let Monuments = [
       crates: {
         "Military Crate": 1,
         "Basic Crate": 3,
-        "Food Crate": 2,
         "Barrel": 4
       },
       cards: ["Blue Card"],
@@ -178,7 +173,6 @@ let Monuments = [
       crates: {
         "Military Crate": 1,
         "Basic Crate": 3,
-        "Food Crate": 1,
         "Barrel": 4
       },
       cards: ["Blue Card"],
@@ -193,7 +187,6 @@ let Monuments = [
       crates: {
         "Military Crate": 1,
         "Basic Crate": 3,
-        "Food Crate": 2,
         "Barrel": 4
       },
       cards: ["Blue Card"],
@@ -211,7 +204,6 @@ let Monuments = [
       crates: {
         "Military Crate": 4,
         "Basic Crate": 4,
-        "Food Crate": 3,
         "Barrel": 6
       },
       cards: ["Red Card"],
@@ -226,7 +218,6 @@ let Monuments = [
       crates: {
         "Military Crate": 4,
         "Basic Crate": 4,
-        "Food Crate": 2,
         "Barrel": 6
       },
       cards: ["Red Card","Green Card"],
@@ -241,7 +232,6 @@ let Monuments = [
       crates: {
         "Military Crate": 4,
         "Basic Crate": 4,
-        "Food Crate": 2,
         "Barrel": 6
       },
       cards: ["Red Card"],
@@ -270,8 +260,8 @@ let Monuments = [
     Loot: {
       crates: {
         "Elite Crate": 2,
-        "Military Crate": 2,
-        "Basic Crate": 2,
+        "Military Crate": 5,
+        "Basic Crate": 5,
         "Food Crate": 1
       },
       cards: ["Red Card"],
@@ -396,9 +386,8 @@ let Monuments = [
       vid: "https://youtu.be/H7eMgAUkR-U?si=qXTsvnRH1YDtJ5WB",
       Loot: {
         crates: {
-          "Military Crate": 1,
-          "Basic Crate": 1,
-          "Food Crate": 8,
+          "Military Crate": 2,
+          "Basic Crate": 3,
           "Barrel": 6
         },
         cards: [],
@@ -445,10 +434,7 @@ function Vidpopup(x){
     <rect width="100%" height="100%" filter="url(#noise)" fill="#000000"></rect>
 
 <!-- Monuments -->
-<h1 style="position:absolute;top:20%;left:46%;font-size:40px">Tier 0</h1>
-<div style="position: absolute;top:19%;left:54%;font-size:40px" class="tooltip" data-tip="Tier 0 Monuments are the most basic monuments. They do not require any keycards to access.">
-    <button class="btn">!</button>
-</div>
+<h1 style="position:absolute;top:20%;left:46%;font-size:40px" class="tooltip" data-tip="Tier 0 Monuments are the most basic monuments. They do not require any keycards to access.">Tier 0</h1>
 <div class="carousel carousel-center rounded-box" style="position: absolute;top:28%;left:10%;width:80%;height:30%">
     {#each Monuments[0] as monument }
     <div class="carousel-item">
@@ -460,10 +446,7 @@ function Vidpopup(x){
     {/each}
 </div>
 
-<h1 style="position:absolute;top:60%;left:46%;font-size:40px">Tier 1</h1>
-<div style="position: absolute;top:59%;left:54%;font-size:40px" class="tooltip" data-tip="Tier 1 are the second most basic monuments. They require a green keycard aswell as a fuse to access.">
-    <button class="btn">!</button>
-</div>
+<h1 style="position:absolute;top:60%;left:46%;font-size:40px" class="tooltip" data-tip="Tier 1 are the second most basic monuments. They require a green keycard aswell as a fuse to access.">Tier 1</h1>
 <div class="carousel carousel-center rounded-box" style="position: absolute;top:65%;left:10%;width:80%;height:30%">
     {#each Monuments[1] as monument }
     <div class="carousel-item">
@@ -475,10 +458,7 @@ function Vidpopup(x){
     {/each}
 </div>
 
-<h1 style="position:absolute;top:96%;left:46%;font-size:40px">Tier 2</h1>
-<div style="position: absolute;top:95%;left:54%;font-size:40px" class="tooltip" data-tip="Tier 2 Monuments require a blue keycard aswell as a fuse to access. In some cases such as the Power Plant or Airfield, you will also need a green keycard.">
-    <button class="btn">!</button>
-</div>
+<h1 style="position:absolute;top:96%;left:46%;font-size:40px" class="tooltip" data-tip="Tier 2 Monuments require a blue keycard aswell as a fuse to access. In some cases such as the Power Plant or Airfield, you will also need a green keycard.">Tier 2</h1>
 <div class="carousel carousel-center rounded-box" style="position:absolute;top:101%;left:10%;width:80%;height:30%">
     {#each Monuments[2] as monument }
     <div class="carousel-item">
@@ -489,11 +469,8 @@ function Vidpopup(x){
     </div>
     {/each}
 </div>
-<h1 style="position:absolute;top:135%;left:46%;font-size:40px">Tier 3</h1>
-<div style="position: absolute;top:134%;left:54%;font-size:40px" class="tooltip" data-tip="Tier 3 monuments are the highest tier of monuments with the best loot such as locked crates, Most of them require all three cards to access however cargo doesnt take any cards the same goes for excavator.">
-    <button class="btn">!</button>
-</div>
 
+<h1 style="position:absolute;top:135%;left:46%;font-size:40px" class="tooltip" data-tip="Tier 3 monuments are the highest tier of monuments with the best loot such as locked crates, Most of them require all three cards to access however cargo doesnt take any cards the same goes for excavator.">Tier 3</h1>
 <div class="carousel carousel-center rounded-box" style="position: absolute;top:140%;left:10%;width:80%;height:30%">
     {#each Monuments[3] as monument } 
     <div class="carousel-item">

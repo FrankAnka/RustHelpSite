@@ -23,11 +23,11 @@ let craftCost
 let tier
 
 let itemname
-let local /*location*/
+let local /*short for location*/
 let dropRate
 let img
 let popupDisplay="none"
-let scrollGridColumns=5
+
 let ItemList=[
 
 /* Buildings(decay is in hours) */
@@ -254,12 +254,11 @@ let ItemList=[
 
 function searchItem(searchString){
     let searchResults = ItemList[CurrentCategory].filter(item => item.name.toLowerCase().includes(searchString.toLowerCase()));
-    
     return searchResults;
 
 }
 
-/* Also handle recent searches */
+
 function InfoPopup(Item) {
     popupDisplay = "flex";
 
@@ -315,6 +314,7 @@ else{
 </div>
 
 <section id="grid" class="ScrollableGrid no-scrollbar">
+    <!-- Display search results if searchString is not empty -->
     {#if searchString.length >0}
         {#each searchItem(searchString) as Item}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -332,6 +332,7 @@ else{
     
         {/each}
     {:else}
+    <!-- Display all items in the current category -->
         {#each ItemList[CurrentCategory] as Item}
 
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -356,7 +357,7 @@ else{
     <h1 style="font-size: 40px; position:absolute; top:8%; left:5%;">{itemname}</h1>
     <img style="position: absolute; top:16%; left:5%; border: #717171 2px solid; border-radius:20px;" src={img} alt={itemname}>
 
-
+    <!-- Stats -->
       <div class="stats stats-vertical shadow no-scrollbar" style="overflow-y: scroll; position: absolute; top: 50%; left: 5%; width: 22%; height: 30%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
         <div class="stat">
           <div class="stat-title">Health</div>
@@ -373,7 +374,7 @@ else{
           <div class="stat-value">{buildcost} {grade||""}</div>
         </div>
       </div>
-
+      <!-- Raid info-->
       <div class="overflow-x-auto" style="position: absolute; left: 33%; top:16%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
         <table class="table">
           <!-- head -->
@@ -399,11 +400,11 @@ else{
       </div>
 
 
-
-
+<!--- Explosives are selected  -->
   {:else if CurrentCategory === 1}
     <h1 style="font-size: 40px; position:absolute; top:8%; left:5%;">{itemname}</h1>
     <img style="position: absolute; top:20%; left:8%; border: #717171 2px solid; border-radius:20px;transform:scale(1.4);" src={img} alt={itemname}>
+    <!-- Stats -->
     <div class="stats stats-vertical shadow" style=" overflow-y:hidden;position: absolute; top: 50%; left: 5%; width: 22%; height: 30%; border-radius: 20px; border: #717171 solid 2px; background-color: #1f1c2b;">
         <div class="stat">
           <div class="stat-title">Damage</div>
@@ -431,7 +432,7 @@ else{
         {/if}
         
       </div>
-      
+      <!-- Droprates and sources-->
     <table class="table" style="position:absolute;top: 50%;left:30%;width:auto;height:28%;border-radius: 20px; background-color: #1f1c2b;display:{ObtainVisiblity};z-index: 10;">
         <!-- head -->
         <thead>
@@ -450,7 +451,7 @@ else{
         </tbody>
     </table>
 
-
+<!-- Crafting Cost Table -->
     <section class="MoreInfo">
         {#if craftCost && Object.keys(craftCost).length > 0}
         

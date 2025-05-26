@@ -1,0 +1,25 @@
+---
+title: Version 0.0.4
+date: "2025-05-26"
+---
+
+# Hello 
+   This is the last devblog for this project and since last time i havent really done that much, i have fixed a few bugs and ensured it would work on mobile devices. There is however one bug left, wich is that you need to refresh the monument page if you cannot scroll.I have no clue what causes this.
+    I also pushed pack the creation of the building page as i didnt want to rush it since i didnt have enough time to complete it.
+## Changes
+    Fixed styling for phones.
+    Moved building page to future features as i ran out of time
+
+
+## Features
+    ✅List Of buildings and information
+    ✅Generall Styling for most objects
+    ✅Navigation and general Menu setup 
+    ✅Raidhelp
+    ✅Crafting recipes for items
+    ✅Popup with information
+    ✅Search
+    ✅Guide page
+    ✅Phone compatibility
+<hr>
+<br>
